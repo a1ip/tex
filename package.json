@@ -1,0 +1,27 @@
+{
+  "name": "Tex",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Automate tex to pdf build process",
+  "main": "build.coffee",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp latex",
+    "deploy": "git push \"git@github.com:a1ip/tex.git\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a1ip/tex.git"
+  },
+  "author": {
+    "name": "Phil Rigovanov",
+    "email": "phil@rigovanov.ru",
+    "url": "http://rigovanov.ru"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "gulp": "^3.9.0",
+    "gulp-latex": "^0.1.2"
+  }
+}
