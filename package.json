@@ -6,7 +6,11 @@
   "main": "build.coffee",
   "scripts": {
     "start": "gulp",
+<<<<<<< HEAD
     "build": "gulp latex",
+=======
+    "build": "coffee build.coffee",
+>>>>>>> d921686f9ea1ab6d702ff074c075de8853b5b4b5
     "deploy": "git push \"git@github.com:a1ip/tex.git\""
   },
   "repository": {
