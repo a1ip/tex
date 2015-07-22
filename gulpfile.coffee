@@ -9,7 +9,7 @@ gulp.task 'latex', ->
   .pipe gulp.dest('./build')
 
 gulp.task 'watch', ->
-  gulp.watch paths
+  gulp.watch(paths, ['latex'])
   return
 
 gulp.task 'default', [
