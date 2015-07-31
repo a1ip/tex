@@ -1,11 +1,13 @@
 gulp = require 'gulp'
 latex = require 'gulp-latex'
 notify = require 'gulp-notify'
+plumber = require 'gulp-plumber'
 
 paths = 'src/*.tex'
 
 gulp.task 'latex', ->
   gulp.src(paths)
+  .pipe plumber()
   .pipe latex()
   .pipe notify('LaTeX has been renewed!')
   .pipe gulp.dest('./build')
