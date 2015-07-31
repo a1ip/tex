@@ -12,13 +12,9 @@
 \usepackage{hyphenat}
 \hyphenation{мате-мати-ка восста-навливать}
 %--------------------------------------
-\title{Иррациональные уравнения}
-\author{Ригованов Филипп}
+\title{Для Лены}
+\author{Ригованов Филипп Юрьевич}
 \date{Июль 2015}
-
-% decent example of doing mathematics and proofs in LaTeX.
-% An Incredible degree of information can be found at
-% http://en.wikibooks.org/wiki/LaTeX/Mathematics
 
 % Use wide margins, but not quite so wide as fullpage.sty
 \marginparwidth 0.5in
@@ -31,8 +27,6 @@
 
 \usepackage{amsmath}
 \usepackage{upgreek}
-
-\newcommand{\tg}{\mathop{\rm tg}\nolimits}
 
 \begin{document}
 
@@ -48,11 +42,19 @@ $$1-\frac{3}{5}+\frac{9}{25}-\frac{27}{75}+\frac{81}{375}+\ldots$$
 
 a) $y=\frac{\cos{x}}{e^x}$
 
+Решение:
+$$y^\prime=\left(\frac{\cos{x}}{e^x}\right)^\prime=\left(\cos{x}\cdot e^{-x}\right)^\prime=\cos{x}\cdot\left(e^{-x}\right)^\prime+\left(\cos{x}\right)^\prime\cdot e^{-x}=\cos{x}\cdot\left(-e^{-x}\right)+\left(-\sin{x}\right)\cdot e^{-x}=$$ $$=-e^{-x}\left(\cos{x}+\sin{x}\right)$$
+
 б) $y=x^{11}\cdot\sin{x}$
+
+Решение:
+$$y^\prime=\left(x^{11}\cdot\sin{x}\right)^\prime=x^{11}\cdot\left(\sin{x}\right)^\prime+\left(x^{11}\right)^\prime\cdot\sin{x}=x^{11}\cdot\cos{x}+11x^{10}\cdot\sin{x}$$
 
 \item % Задача 3
 Найдите промежутки монотонности функции:
 $$y=2x^3-3x^2-36x+40$$
+Решение:
+$$y^\prime=\left(2x^3-3x^2-36x+4\right)^\prime=6x^2-6x-36=6\left(x^2-x-6\right)=6(x-3)(x+2)$$
 
 \item % Задача 4
 Найдите точки экстремума:
