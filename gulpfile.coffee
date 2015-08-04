@@ -8,9 +8,9 @@ paths = 'src/*.tex'
 gulp.task 'latex', ->
   gulp.src(paths)
   .pipe plumber()
-  .pipe latex()
+  .pipe latex({command: 'pdflatex',format: 'pdf'})
   .pipe notify('LaTeX has been renewed!')
-  .pipe gulp.dest('./build')
+  .pipe gulp.dest('build')
 
 gulp.task 'watch', ->
   gulp.watch(paths, ['latex'])
