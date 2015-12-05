@@ -11,7 +11,7 @@
 %\setmonofont{Courier New}
 \usepackage{indentfirst}
 \frenchspacing
-
+\usepackage{graphicx}
 \usepackage{titlesec} % package to customize chapters, sections and subsections style
 %--------------------------------------
 \titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
@@ -129,6 +129,7 @@ F(x) =
  \end{cases}
 \end{equation*}
 \begin{center}Решение:\end{center}
+\includegraphics[width=340pt,natwidth=784,natheight=581]{2_6_1.png}
 \begin{equation*}
 f(x) = F^{\prime}(x) =
  \begin{cases}
@@ -137,6 +138,7 @@ f(x) = F^{\prime}(x) =
   0, & x>1
  \end{cases}
 \end{equation*}
+\includegraphics[width=340pt,natwidth=784,natheight=581]{2_6_2.png}
 $$m=M(X)=\int_{-\infty}^{+\infty} x f(x) dx=\int_{0}^{1} x\left(x-\frac{1}{2}\right) dx=\int_{0}^{1} x^2dx - \frac{1}{2}\int_{0}^{1} xdx=\left(\frac{x^3}{3}-\frac{x^2}{4}\right)\bigg|_{0}^{1}=\frac{1}{12}\approx0,08.$$
 $$D(X)=\int_{-\infty}^{+\infty} (x-m)^2 f(x) dx=\int_{0}^{1} \left(x-\frac{1}{12}\right)^2\left(x-\frac{1}{2}\right) dx=\int_{0}^{1} \left(x^3-\frac{2x^2}{3}+\frac{13x}{144}-\frac{1}{288}\right) dx=$$
 $$=\left(\frac{x^4}{4}-\frac{2x^3}{9}+\frac{13x^2}{288}-\frac{x}{288}\right)\bigg|_{0}^{1}=\frac{1}{4}-\frac{2}{9}+\frac{13}{288}-\frac{1}{288}=\frac{5}{72}\approx0,07.$$
@@ -164,7 +166,7 @@ $$P (|X-m| < n)= 2\Phi\left(\frac{n}{\sigma}\right)=2\Phi\left(\frac{6}{3}\right
 
 1) Построить полигон частот.
 
-2) Найти выборочну среднюю $x_\textit{в}$ (несмещённую оценку средней)
+2) Найти выборочнуюсреднюю $x_\textit{в}$ (несмещённую оценку средней)
 
 3) Найти выборочную дисперсию (смещённую оценку)
 
@@ -180,10 +182,13 @@ $n_j$ & 10 & 15 & 40 & 35 & 20 & 10 & 5 \\
 \end{tabular}
 \end{center}
 \begin{center}Решение:\end{center}
-1)
+1) Найдем сначала объём выборки: $$n=\sum_{j=1}^k n_j=10+15+40+35+20+10+5=135$$
 
-2) Объём выборки: $$n=\sum_{j=1}^k n_j=10+15+40+35+20+10+5=135$$
-Выборочная средняя:
+Полигон частот:
+
+\includegraphics[width=340pt,natwidth=783,natheight=583]{2_8.png}
+
+2) Выборочная средняя:
 $$\overline{x_\textit{в}}=\frac{1}{n}\sum_{j=1}^k n_j x_j=\frac{1}{135}\cdot\left(10\cdot100+15\cdot140+40\cdot150+35\cdot170+20\cdot180+10\cdot190+5\cdot200\right)=$$
 $$=\frac{21550}{135}=\frac{4310}{27}\approx159,63.$$
 
@@ -203,7 +208,7 @@ $$S^2=\frac{n}{n-1}D_{\textit{в}}=\frac{54297000}{134\cdot27^2}\approx555,83.$$
 $$S=\sqrt{S^2}=\sqrt{\frac{54297000}{134\cdot27^2}}\approx23,576$$
 
 \item % Задание 9
-Найти доверительные интервалы для оценки математического ожидания с надёжностью $\gamma=0,95$, зная выборочную среднюю $\overline{x_\textit{в}}$, объём выборки $n$ и среднее математическое отклонение $\sigma$ нормально распределенной величины $X$.
+Найти доверительные интервалы для оценки математического ожидания с надёжностью $\gamma=0,95$; зная выборочную среднюю $\overline{x_\textit{в}}$, объём выборки $n$ и среднее математическое отклонение $\sigma$ нормально распределенной величины $X$.
 
 $$\overline{x_\textit{в}}=175,16; \sigma=8; n=64.$$
 \begin{center}Решение:\end{center}
@@ -304,6 +309,7 @@ F(x) =
  \end{cases}
 \end{equation*}
 \begin{center}Решение:\end{center}
+\includegraphics[width=340pt,natwidth=784,natheight=581]{4_6_1.png}
 \begin{equation*}
 f(x) = F^{\prime}(x) =
  \begin{cases}
@@ -312,6 +318,7 @@ f(x) = F^{\prime}(x) =
   0, & x>\frac{1}{3}
  \end{cases}
 \end{equation*}
+\includegraphics[width=340pt,natwidth=784,natheight=581]{4_6_2.png}
 $$m=M(X)=\int_{-\infty}^{+\infty} x f(x) dx=\int_{0}^{1/3} x(6x+2) dx=\int_{0}^{1/3} 6x^2dx + \int_{0}^{1/3} 2xdx=(2x^3+x^2)\bigg|_{0}^{\frac{1}{3}}=\frac{5}{27}\approx0,185.$$
 $$D(X)=\int_{-\infty}^{+\infty} (x-m)^2 f(x) dx=\int_{0}^{1/3} \left(x-\frac{5}{27}\right)^2(6x+2) dx=\int_{0}^{1/3} \left(6x^3-\frac{2x^2}{9}-\frac{130x}{243}+\frac{50}{729}\right) dx=$$
 $$=\left(\frac{3x^4}{2}-\frac{2x^3}{27}-\frac{65x^2}{243}+\frac{50x}{729}\right)\bigg|_{0}^{\frac{1}{3}}=\frac{1}{54}-\frac{2}{729}-\frac{65}{2187}+\frac{50}{2187}=\frac{6,5}{729}\approx0,0089.$$
@@ -337,7 +344,7 @@ $$P (|X-m| < n)= 2\Phi\left(\frac{n}{\sigma}\right)=2\Phi\left(\frac{8}{5}\right
 
 1) Построить полигон частот.
 
-2) Найти выборочну среднюю $x_\textit{в}$ (несмещённую оценку средней)
+2) Найти выборочнуюсреднюю $x_\textit{в}$ (несмещённую оценку средней)
 
 3) Найти выборочную дисперсию (смещённую оценку)
 
@@ -353,10 +360,13 @@ $n_j$ & 20 & 15 & 5 & 10 & 25 & 30 & 40 \\
 \end{tabular}
 \end{center}
 \begin{center}Решение:\end{center}
-1)
+1) Найдем сначала объём выборки: $$n=\sum_{j=1}^k n_j=20+15+5+10+25+30+40=145$$
 
-2)  Объём выборки: $$n=\sum_{j=1}^k n_j=20+15+5+10+25+30+40=145$$
-Выборочная средняя:
+Полигон частот:
+
+\includegraphics[width=340pt,natwidth=783,natheight=583]{4_8.png}
+
+2) Выборочная средняя:
 $$\overline{x_\textit{в}}=\frac{1}{n}\sum_{j=1}^k n_j x_j=\frac{1}{145}\cdot\left(20\cdot130+15\cdot140+5\cdot160+10\cdot170+25\cdot190+30\cdot200+40\cdot220\right)=$$
 $$=\frac{26750}{145}=\frac{5350}{29}\approx184,48.$$
 
@@ -376,7 +386,7 @@ $$S^2=\frac{n}{n-1}D_{\textit{в}}=\frac{128325000}{144\cdot29^2}\approx1059,6.$
 $$S=\sqrt{S^2}=\sqrt{\frac{128325000}{144\cdot29^2}}\approx32,55$$
 
 \item % Задание 9
-Найти доверительные интервалы для оценки математического ожидания с надёжностью $\gamma=0,95$, зная выборочную среднюю $\overline{x_\textit{в}}$, объём выборки $n$ и среднее математическое отклонение $\sigma$ нормально распределенной величины $X$.
+Найти доверительные интервалы для оценки математического ожидания с надёжностью $\gamma=0,95$; зная выборочную среднюю $\overline{x_\textit{в}}$, объём выборки $n$ и среднее математическое отклонение $\sigma$ нормально распределенной величины $X$.
 
 $$\overline{x_\textit{в}}=175,41; \sigma=12; n=144.$$
 \begin{center}Решение:\end{center}
@@ -486,6 +496,7 @@ F(x) =
  \end{cases}
 \end{equation*}
 \begin{center}Решение:\end{center}
+\includegraphics[width=340pt,natwidth=784,natheight=581]{8_6_1.png}
 \begin{equation*}
 f(x) = F^{\prime}(x) =
  \begin{cases}
@@ -494,7 +505,7 @@ f(x) = F^{\prime}(x) =
   0, & x>0
  \end{cases}
 \end{equation*}
-
+\includegraphics[width=340pt,natwidth=784,natheight=581]{8_6_2.png}
 $$m=M(X)=\int_{-\infty}^{+\infty} x f(x) dx=\int_{-\frac{\pi}{2}}^{0} \left(-x\sin{x}\right) dx=\left\langle \begin{array}{cc} u=x & du=dx \\ -\sin{x}dx=dv & v=\cos{x} \end{array} \right\rangle=$$ $$=x\cos{x}\bigg|_{-\frac{\pi}{2}}^{0}-\int_{-\frac{\pi}{2}}^{0} \cos{x} dx=\left(x\cos{x}-\sin{x}\right)\bigg|_{-\frac{\pi}{2}}^{0}=
 \left(0\cos{0}-\sin{0}\right)-\left(-\frac{\pi}{2}\cos{\left(-\frac{\pi}{2}\right)}-\left(\sin{\left(-\frac{\pi}{2}\right)}\right)\right)=-1.$$
 
@@ -526,7 +537,7 @@ $$P (|X-m| < n)= 2\Phi\left(\frac{n}{\sigma}\right)=2\Phi\left(\frac{4}{3}\right
 
 1) Построить полигон частот.
 
-2) Найти выборочну среднюю $x_\textit{в}$ (несмещённую оценку средней)
+2) Найти выборочнуюсреднюю $x_\textit{в}$ (несмещённую оценку средней)
 
 3) Найти выборочную дисперсию (смещённую оценку)
 
@@ -542,10 +553,13 @@ $n_j$ & 5 & 10 & 20 & 30 & 15 & 25 & 40 \\
 \end{tabular}
 \end{center}
 \begin{center}Решение:\end{center}
-1)
+1) Найдем сначала объём выборки: $$n=\sum_{j=1}^k n_j=5+10+20+30+15+25+40=145$$
 
-2)  Объём выборки: $$n=\sum_{j=1}^k n_j=5+10+20+30+15+25+40=145$$
-Выборочная средняя:
+Полигон частот:
+
+\includegraphics[width=340pt,natwidth=783,natheight=583]{8_8.png}
+
+2) Выборочная средняя:
 $$\overline{x_\textit{в}}=\frac{1}{n}\sum_{j=1}^k n_j x_j=\frac{1}{145}\cdot\left(5\cdot100+10\cdot110+20\cdot150+30\cdot170+15\cdot180+25\cdot200+40\cdot220\right)=$$
 $$=\frac{26200}{145}=\frac{5240}{29}\approx180,69.$$
 
@@ -565,7 +579,7 @@ $$S^2=\frac{n}{n-1}D_{\textit{в}}=\frac{147958000}{144\cdot29^2}\approx1221,74.
 $$S=\sqrt{S^2}=\sqrt{\frac{147958000}{144\cdot29^2}}\approx34,95$$
 
 \item % Задание 9
-Найти доверительные интервалы для оценки математического ожидания с надёжностью $\gamma=0,95$, зная выборочную среднюю $\overline{x_\textit{в}}$, объём выборки $n$ и среднее математическое отклонение $\sigma$ нормально распределенной величины $X$.
+Найти доверительные интервалы для оценки математического ожидания с надёжностью $\gamma=0,95$; зная выборочную среднюю $\overline{x_\textit{в}}$, объём выборки $n$ и среднее математическое отклонение $\sigma$ нормально распределенной величины $X$.
 
 $$\overline{x_\textit{в}}=186,06; \sigma=10; n=121.$$
 \begin{center}Решение:\end{center}
