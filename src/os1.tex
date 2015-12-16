@@ -1,0 +1,182 @@
+\documentclass{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+%\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% задаёт основной шрифт документа
+%\setsansfont{Comic Sans MS}                    %% задаёт шрифт без засечек
+%\setmonofont{Courier New}
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage{xcolor}
+\usepackage{alltt}
+\usepackage{listingsutf8}
+\lstset{
+    language=[WinXP]{command.com},
+    basicstyle=\ttfamily\small,
+    numberstyle=\footnotesize,
+    numbers=left,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=2,
+    rulecolor=\color{black!30},
+    title=\lstname,
+    escapeinside={\%*}{*)},
+    breaklines=true,
+    breakatwhitespace=true,
+    framextopmargin=2pt,
+    framexbottommargin=2pt,
+    extendedchars=false,
+    inputencoding=utf8
+}
+
+\title{Лабораторная работа № 1 по курсу операционные системы \\
+Тема: «Работа с командной строкой. Создание сценариев»}
+\author{Ригованов Филипп Юрьевич, студент группы КТбз1-1}
+\date{Декабрь 2015}
+
+\begin{document}
+
+\maketitle
+\section*{Вариант № 1.}
+Разработать пакетный bat-­файл файл для обновления архива. Выбор архиватора осуществляется из меню. Имя архива передается в командной строке.
+В пакетном файле предусмотреть сообщение имени, назначения, применения и автора пакетного файла (при пустой командной строке и по ключу~/?), контроль верности командной строки, наличие требуемых файлов и сохранность имени пакетного файла. Текущий каталог не изменять, если это специально не оговорено. Там, где необходимо, имена файлов указывать с полным путем и диском. С клавиатуры при работе пакетного файла вводить только числа, строковые данные выбирать либо из меню, либо передавать в командной строке.
+
+Листинг исходного кода программы:
+\begin{lstlisting}
+@echo off
+rem %*Проверка наличия параметра командной строки*)
+if "%1"=="" goto info
+if "%1"=="/?" goto info
+rem %*Проверка существования каталога*)
+if exist "C:\text" (
+rem %*Вывод меню на экран*)
+cls
+echo %*Выберите архиватор:*)
+echo 1 - 7zip
+echo 2 - WinRaR
+@choice /C:12
+rem %*Определение сделанного выбора*)
+if errorlevel 2 goto winrar
+if errorlevel 1 goto 7zip
+echo %*Выбор не был сделан.*)
+goto end
+) else (
+echo %*Каталог*) "C:\text" %*отсутсвует*).
+goto end
+)
+
+:7zip
+"C:\Program Files\7-Zip\7z.exe" a -r "%1" C:\text
+goto end
+
+:winrar
+"C:\Program Files\WinRaR\Rar.exe" a -r "%1" C:\text
+goto end
+
+:info
+echo %*Скрипт arch.bat предназначен для обновления архива содержимого*)
+echo %*каталога*) "C:\text" %*с помощью архиватора 7-Zip или WinRaR на выбор.*)
+echo %*Автор: Ригованов Филипп Юрьевич, группа КТбз1-1.*)
+echo %*Использование:*)
+echo %*Обрабатывается только перый аргумент, если он отсутсвует или равен*) "/?",
+echo %*то выводится данная справка, любое другое значение аргумента используется*)
+echo %*в качестве имени создаваемого или обновляемого архива.*)
+echo %*Если отсутсвует каталог*) "C:\text", %* то выводится сообщение об его отсутствии.*)
+pause
+
+:end
+\end{lstlisting}
+Если нам нужно обновить архив и присвоить ему имя \textbf{test}, то нужно выполнить команду:
+\begin{lstlisting}[language={},numbers={}]
+C:\>arch.bat test
+\end{lstlisting}
+\vfill
+Результат работы программы при выборе архиватора 7zip:
+\begin{lstlisting}[language={},numbers={}]
+%*Выберите архиватор:*)
+1 - 7zip
+2 - WinRaR
+[1,2]?1
+
+7-Zip [32] 15.12 : Copyright (c) 1999-2015 Igor Pavlov : 2015-11-19
+
+Open archive: test.7z
+--
+Path = test.7z
+Type = 7z
+Physical Size = 354
+Headers Size = 190
+Method = LZMA2:13
+Solid = -
+Blocks = 1
+
+Scanning the drive:
+1 folder, 3 files, 6148 bytes (7 KiB)
+
+Updating archive: test.7z
+
+Items to compress: 4
+
+
+Files read from disk: 1
+Archive size: 354 bytes (1 KiB)
+Everything is Ok
+
+C:\>
+\end{lstlisting}
+\newpage
+Результат работы программы при выборе архиватора WinRaR:
+\begin{lstlisting}[language={},numbers={}]
+%*Выберите архиватор:*)
+1 - 7zip
+2 - WinRaR
+[1,2]?2
+
+RAR 5.20   Copyright (c) 1993-2014 Alexander Roshal   2 Dec 2014
+Trial version             Type RAR -? for help
+
+Evaluation copy. Please register.
+
+Updating archive test.rar
+
+Updating  C:\text\.DS_Store                                           OK
+Updating  C:\text\1.txt                                               OK
+Updating  C:\text\2.txt                                               OK
+Updating  C:\text                                                    100%
+Done
+
+C:\>
+\end{lstlisting}
+Вывод справки:
+\begin{lstlisting}[language={},numbers={}]
+C:\>arch.bat /?
+%*Скрипт arch.bat предназначен для обновления архива содержимого*)
+%*каталога*) "C:\text" %*с помощью архиватора 7-Zip или WinRaR на выбор.*)
+%*Автор: Ригованов Филипп Юрьевич, группа КТбз1-1.*)
+%*Использование:*)
+%*Обрабатывается только перый аргумент, если он отсутсвует или равен*) "/?",
+%*то выводится данная справка, любое другое значение аргумента используется*)
+%*в качестве имени создаваемого или обновляемого архива.*)
+%*Если отсутсвует каталог*) "C:\text", %* то выводится сообщение об его отсутствии.*)
+%*Нажмите любую клавишу для продолжения...*)
+\end{lstlisting}
+Результат работы программы в случае отсутствия каталога, который должен архивироваться:
+\begin{lstlisting}[language={},numbers={}]
+C:\>arch.bat test
+%*Каталог*) "C:\text" %*отсутсвует*).
+
+C:\>
+\end{lstlisting}
+\end{document}
