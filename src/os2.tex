@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+%\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% задаёт основной шрифт документа
+%\setsansfont{Comic Sans MS}                    %% задаёт шрифт без засечек
+%\setmonofont{Courier New}
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage{xcolor}
+\usepackage{pmboxdraw}
+\usepackage{listingsutf8}
+\lstset{
+    language=[WinXP]{command.com},
+    basicstyle=\ttfamily\small,
+    numberstyle=\footnotesize,
+    numbers=left,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=2,
+    rulecolor=\color{black!30},
+    title=\lstname,
+    escapeinside={\%*}{*)},
+    breaklines=true,
+    breakatwhitespace=true,
+    framextopmargin=2pt,
+    framexbottommargin=2pt,
+    extendedchars=false,
+    inputencoding=utf8
+}
+
+\title{Лабораторная работа № 2 по курсу операционные системы \\
+Тема: «Операционная система MS DOS и Windows: \\
+конфигурирование и настройка»}
+\author{Ригованов Филипп Юрьевич, студент группы КТбз1-1}
+\date{Декабрь 2015}
+
+\begin{document}
+
+\maketitle
+\section*{Часть № 1. MS DOS.}
+\begin{enumerate}
+\item
+Просмотрим содержимое диска С:
+\begin{lstlisting}[language={},numbers={}]
+C:\Documents and Settings\phil>dir C:\
+ %*Том в устройстве C не имеет метки.*)
+ %*Серийный номер тома*): BC51-556D
+
+ %*Содержимое папки*) C:\
+
+26.03.2015  11:43                 0 AUTOEXEC.BAT
+26.03.2015  11:58    <DIR>          ce428f8bace5b7b1331098b2640510
+26.03.2015  11:43                 0 CONFIG.SYS
+26.03.2015  11:45    <DIR>          Documents and Settings
+17.12.2015  23:19    <DIR>          PABCWork.NET
+17.12.2015  14:53    <DIR>          Program Files
+03.06.2015  20:34    <DIR>          WINDOWS
+               2 %*файлов*)              0 %*байт*)
+               5 %*папок*)  11 720 065 024 %*байт свободно*)
+
+C:\Documents and Settings\phil>
+\end{lstlisting}
+В корневом каталоге 5 директорий и 2 файла.
+\newpage
+\item
+Создаём каталог WORK с вложенными папками, переходим в него и выводим на экран дерево каталогов.
+\begin{lstlisting}[language={},numbers={}]
+C:\Documents and Settings\phil>mkdir C:\WORK
+
+C:\Documents and Settings\phil>cd C:\WORK
+
+C:\WORK>mkdir PART1 PART2 PART3\FIRST PART3\SECOND
+
+C:\WORK>tree C:\WORK
+%*Структура папок*)
+%*Серийный номер тома*): BC51-556D
+C:\WORK
+%*├───*)PART1
+%*├───*)PART2
+%*└───*)PART3
+    %*├───*)FIRST
+    %*└───*)SECOND
+
+C:\WORK>
+\end{lstlisting}
+\item
+Создаём файл inform.txt с текстом <<Задание практической работы №1>>:
+\begin{lstlisting}[language={},numbers={}]
+C:\WORK>copy /a con PART3\FIRST\inform.txt
+%*Задание практической работы №1*)^Z
+%*Скопировано файлов*):         1.
+
+C:\WORK>
+\end{lstlisting}
+\item
+Копируем файл inform.txt в каталог SECOND и дописываем в него свою фамилию:
+\begin{lstlisting}[language={},numbers={}]
+C:\WORK>copy PART3\FIRST\inform.txt PART3\SECOND
+%*Скопировано файлов*):         1.
+
+C:\WORK>echo %*Ригованов*) >> PART3\SECOND\inform.txt
+
+C:\WORK>
+\end{lstlisting}
+\item
+Скопированный файл inform.txt переименовываем в new\_inf.txt:
+\begin{lstlisting}[language={},numbers={}]
+C:\WORK>ren PART3\SECOND\inform.txt new_inf.txt
+
+C:\WORK>
+\end{lstlisting}
+\newpage
+\item
+Копируем new\_inf.txt в каталог PART1 и удаляем каталог PART3:
+\begin{lstlisting}[language={},numbers={}]
+C:\WORK>copy PART3\SECOND\new_inf.txt PART1
+%*Скопировано файлов*):         1.
+
+C:\WORK>rd PART3 /s/q
+
+C:\WORK>
+\end{lstlisting}
+
+Выведем на экран дерево каталогов и содержимое файла new\_inf.txt:
+
+\begin{lstlisting}[language={},numbers={}]
+C:\WORK>tree C:\WORK /f
+%*Структура папок*)
+%*Серийный номер тома*): BC51-556D
+C:\WORK
+%*├───*)PART1
+%*│*)       new_inf.txt
+%*│*)
+%*└───*)PART2
+
+C:\WORK>type PART1\new_inf.txt
+%*Задание практической работы №1*)
+%*Ригованов*)
+
+C:\WORK>
+\end{lstlisting}
+\end{enumerate}
+%%\section*{Часть № 2. Windows.}
+\end{document}

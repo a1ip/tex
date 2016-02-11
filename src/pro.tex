@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+%\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+%\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию
+%\setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% задаёт основной шрифт документа
+%\setsansfont{Comic Sans MS}                    %% задаёт шрифт без засечек
+%\setmonofont{Courier New}
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{graphicx}
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+%%% Дополнительная работа с математикой
+\usepackage[intlimits,sumlimits]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+%\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\title{Контрольная работа}
+\author{Теория вероятностей и математическая статистика}
+\date{Декабрь 2015}
+
+\begin{document}
+
+\maketitle
+\section*{Вариант № 7.}
+Задание 4
+
+Найти вероятность того, что в $n$ независимых испытаний событие появится не менее $k$ раз, зная, что в каждом испытании вероятность появления события равна $p$.
+
+$$n=5; k=3; p=0,7.$$
+\begin{center}Решение:\end{center}
+Используем формулу Бернулли $P_n(k)=C_n^k p^k q^{n-k}$, вероятность того, что событие наступит не менее $k$ раз с помощью неё вычисляется так: $$P_n(i\ge k)=\sum_{i=k}^n P_n(i)$$
+В нашем случае $n=5; k=3; p=0,7; q=0,3;$ значит
+$$P_5(i\ge 3)=\sum_{i=3}^5 P_5(i)=P_5(3)+P_5(4)+P_5(5)=C_5^3\cdot0,7^3\cdot0,3^2+C_5^4\cdot0,7^4\cdot0,3+C_5^5\cdot0,7^5=$$
+$$=10\cdot0,343\cdot0,09+5\cdot0,2401\cdot0,3+0,16807=0,83692.$$
+
+Ответ: $0,83692$.
+
+\end{document}

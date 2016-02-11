@@ -21,9 +21,10 @@
   "license": "MIT",
   "devDependencies": {
     "coffee-script": "^1.9.3",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-latex": "^0.1.2",
     "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.0.1"
+    "gulp-plumber": "^1.0.1",
+    "gulp-watch": "^4.3.5"
   }
 }
