@@ -13,7 +13,7 @@ gulp.task 'latex', ->
   .pipe notify('LaTeX has been renewed!')
   .pipe gulp.dest('build')
 
-gulp.task 'watch', ->
+gulp.task 'watch-latex', ->
   gulp.watch(paths, ['latex'])
   return
 
@@ -24,7 +24,6 @@ gulp.task 'watch-folder', ->
   return
 
 gulp.task 'default', [
-  'watch'
-  'latex'
+  'watch-latex'
   'watch-folder'
 ]
