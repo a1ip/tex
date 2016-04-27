@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\title{Контрольная работа №6 по курсу «Математика»\\
+Тема: «Интегральное исчисление функций одной переменной. Ряды.»\\
+Вариант №1}
+\author{Ригованов Филипп Юрьевич, студент группы КТбз1-1}
+\begin{document}
+\date{}
+\maketitle
+\section*{Задание № 1.}
+
+Найти неопределённые интегралы.
+
+$$1)\;\int\left(10+\frac{4}{\sqrt{16-x^2}}-\frac{7}{x^4}-3\sqrt[3]{x^2}+\cos{x}\right)\,dx;\qquad2)\;\int\sqrt[3]{5x+4}\,dx;$$
+
+$$3)\;\int\frac{dx}{x+2x^{5/7}};\qquad4)\;\int x\cdot\arctg{x}\,dx;\qquad5)\;\int\frac{(x+3)dx}{x^2+3x+2}.$$
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 2.}
+
+Найти неопределённый интеграл.
+
+$$\int\limits_{0}^{\pi/2}\frac{dx}{4-\sin{x}+\cos{x}}.$$
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 3.}
+
+Исследовать на сходимость несобственный интеграл.
+
+$$\int\limits_{0}^{+\infty}\frac{x+\sin^2{x}}{x^2+3}\,dx.$$
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 4.}
+
+Исследовать на сходимость числовые ряды $\sum\limits_{n=1}^{\infty}a_n$.
+
+$$1)\;a_n=\frac{n+10}{n^2+2};\qquad2)\;a_n=\frac{n^2+2}{(n+1)!};\qquad3)\;a_n=\frac{1}{(\ln{(n+1)})^n}\;.$$
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 5.}
+
+Исследовать ряд на абсолютную и условную сходимость.
+
+$$\sum\limits_{n=1}^{\infty}(-1)^{n-1}\cdot\frac{3^n}{(5n+2)^n}.$$
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 6.}
+
+Найти область сходимости степенного ряда.
+
+$$\sum\limits_{n=1}^{\infty}\frac{(x-1)^n}{(3n-1)^2\cdot3^n}.$$
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 7.}
+
+Разложить в тригонометрический ряд Фурье функцию $f(x)$.
+
+\begin{equation*}
+f(x)=
+ \begin{cases}
+  1, & \textit{если}\quad -1<x\leq0,\\
+  2-x, & \textit{если}\quad 0<x<1.
+ \end{cases}
+\end{equation*}
+
+\begin{center}Решение:\end{center}
+
+\end{document}
