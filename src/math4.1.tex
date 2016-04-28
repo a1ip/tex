@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[fleqn]{article}
 \usepackage{fullpage}
 %%% Работа с русским языком
 \usepackage[T2A]{fontenc}
@@ -63,8 +63,9 @@ $$=\lim_{x\to0}\frac{2x}{3x(\sqrt{1+x}+\sqrt{1-x})}=\lim_{x\to0}\frac{2}{3(\sqrt
 
 $$3)\; \lim_{x\to0}\frac{\cos{x}-\cos^2{x}}{x^2}=\lim_{x\to0}\frac{\cos{x}(1-\cos{x})}{x^2}=\lim_{x\to0}\cos{x}\;\cdot\lim_{x\to0}\frac{1-\cos{x}}{x^2}=1\cdot\lim_{x\to0}\frac{2\sin^2{\frac{x}{2}}}{x^2}=\frac{1}{2}\lim_{x\to0}\left(\frac{\sin{\frac{x}{2}}}{\frac{x}{2}}\right)^2=\frac{1}{2}.$$
 
+%\begin{flalign}
 $$4)\; \lim_{x\to0}\frac{\left(\sqrt[3]{1+\tg{2x}}-1\right)\ln{(1+\sin^2{3x})}}{(1-\cos{x})\left(2^{\arctg{4x}}-1\right)}=\lim_{x\to0}\frac{\frac{1}{3}\cdot\tg{2x}\cdot\sin^2{3x}}{\frac{x^2}{2}\cdot\arctg{4x}\cdot\ln2}=\lim_{x\to0}\frac{\frac{1}{3}\cdot2x\cdot(3x)^2}{\frac{x^2}{2}\cdot4x\cdot\ln2}=\frac{3}{\ln2}\approx4,328.$$
-
+%%\end{flalign}
 \section*{Задание № 2.}
 
 Исследовать на непрерывность функции $f(x)$ и построить эскизы их графиков.
@@ -183,7 +184,11 @@ $$2)\;y^\prime=\left(\left(e^{\cos{x}}+1\right)^2\right)^\prime=2\cdot\left(e^{\
 $$3)\;y^\prime=\left(3x\cdot\sin{(2x+1)}\right)^\prime=\left(3x\right)^\prime\cdot\sin{(2x+1)}+3x\cdot\left(\sin{(2x+1)}\right)^\prime=3\sin{(2x+1)}+3x\cdot\cos{(2x+1)}\cdot(2x+1)^\prime=$$
 $$=3\sin{(2x+1)}+6x\cdot\cos{(2x+1)};$$
 $$4)\;y_x^\prime=\frac{y_t^\prime}{x_t^\prime}=\frac{\left(\sqrt{1-t^2}\right)^\prime}{(\arcsin{t})^\prime}=\frac{\frac{-t}{\sqrt{1-t^2}}}{\frac{1}{\sqrt{1-t^2}}}=-t;$$
-$5)$ Продифференцируем обе части равенства $\ln{x}+e^{-\frac{y}{x}}=\frac{1}{e}$ по $x$, считая $y$ промежуточным аргументом: $\left(\ln{x}+e^{-\frac{y}{x}}\right)^\prime=\left(\frac{1}{e}\right)^\prime$; $\frac{1}{x}+=0$;
+$5)$ Продифференцируем обе части равенства $\ln{x}+e^{-\frac{y}{x}}=\frac{1}{e}$ по $x$, считая $y$ промежуточным аргументом: $$\left(\ln{x}+e^{-\frac{y}{x}}\right)^\prime=\left(\frac{1}{e}\right)^\prime;\qquad  \frac{1}{x}+e^{-\frac{y}{x}}\cdot\left(-\frac{y}{x}\right)^\prime=0;\qquad
+\frac{1}{x}=e^{-\frac{y}{x}}\cdot\frac{y^\prime x-y}{x^2};\qquad
+1+e^{-\frac{y}{x}}\cdot\frac{y}{x}=e^{-\frac{y}{x}}\cdot y^\prime.$$
+
+Из последнего равенства находим $y^\prime=e^{\frac{y}{x}}+\frac{y}{x}$.
 
 \section*{Задание № 5.}
 
@@ -193,18 +198,47 @@ $$y=\ln{\tg{x}}$$
 
 \begin{center}Решение:\end{center}
 
+$$dy=\left(\ln{\tg{x}}\right)^\prime dx=\frac{\left(\tg{x}\right)^\prime}{\tg{x}}dx=\frac{dx}{\cos^2{x}\cdot\tg{x}}=\frac{2dx}{2\cos{x}\cdot\sin{x}}=\frac{2dx}{\sin{2x}};$$
+
+$$d^2y=\left(\frac{2}{\sin{2x}}\right)^\prime dx^2=-\frac{2\left(\sin{2x}\right)^\prime}{\sin^2{2x}}dx^2=-\frac{4\cos{2x}}{\sin^2{2x}}dx^2.$$
+
 \section*{Задание № 6.}
 
 Пользуясь правилом Лопиталя, найти предел.
 
-$$\lim_{x\to0}=\frac{e^{x\sin{x}}-1}{x^2\cos{x}}$$
+$$\lim_{x\to0}\frac{e^{x\sin{x}}-1}{x^2\cos{x}}$$
 
 \begin{center}Решение:\end{center}
+
+$$\lim_{x\to0}\frac{e^{x\sin{x}}-1}{x^2\cos{x}}=\left[\frac{0}{0}\right]=\lim_{x\to0}\frac{\left(e^{x\sin{x}}-1\right)^\prime}{\left(x^2\cos{x}\right)^\prime}=\lim_{x\to0}\frac{(\sin{x}+x\cos{x})e^{x\sin{x}}}{2x\cos{x}-x^2\sin{x}}=\lim_{x\to0}\frac{\sin{x}+x\cos{x}}{2x\cos{x}-x^2\sin{x}}\cdot\lim_{x\to0}e^{x\sin{x}}=$$
+$$=\left[\frac{0}{0}\right]\cdot1=\lim_{x\to0}\frac{\left(\sin{x}+x\cos{x}\right)^\prime}{\left(2x\cos{x}-x^2\sin{x}\right)^\prime}=\lim_{x\to0}\frac{2\cos{x}-x\sin{x}}{2\cos{x}-x^2\cos{x}-4x\sin{x}}=\frac{2-0}{2-0-0}=1.$$
+
+Таким образом $\lim\limits_{x\to0}\frac{e^{x\sin{x}}-1}{x^2\cos{x}}=1$.
 
 \section*{Задание № 7.}
 
 Средствами дифференциального исчисления исследовать функцию $y=\frac{Bx^3}{x^2+Bx-C}$ и построить её график. Значения коэффициентов $B=2$ и $C=3$.
 
 \begin{center}Решение:\end{center}
+
+$y=\frac{2x^3}{x^2+2x-3}$
+
+Заданная функция является непереодической функцией общего вида. Её график проходит через начало координат, так как $y(0)=0$.
+
+Областью определения заданной функции являются все значения переменной $x$, кроме $x=-3$ и $x=1$, при которых знаменатель дроби обращается в ноль.
+
+Следовательно точки $x=-3$ и $x=1$ являются точками разрыва функции.
+
+Так как $\lim\limits_{x\to-3-0}y(x)=\lim\limits_{x\to-3-0}\frac{2x^3}{(x+3)(x-1)}=-\infty$, $\lim\limits_{x\to-3+0}y(x)=\lim\limits_{x\to-3+0}\frac{2x^3}{(x+3)(x-1)}=\infty$, то точка $x=-3$ является точкой разрыва второго рода.
+
+Так как $\lim\limits_{x\to1-0}y(x)=\lim\limits_{x\to1-0}\frac{2x^3}{(x+3)(x-1)}=-\infty$, $\lim\limits_{x\to1+0}y(x)=\lim\limits_{x\to1+0}\frac{2x^3}{(x+3)(x-1)}=\infty$, то точка $x=1$ является точкой разрыва второго рода.
+
+Прямые $x=-3$ и $x=1$ являются вертикальными асимптотами графика функции.
+
+Уравнения наклонных асимптот $y=kx+b$, где $k=\lim\limits_{x\to\pm\infty}\frac{y(x)}{x}$, $b=\lim\limits_{x\to\pm\infty}y(x)-kx$.
+
+$$k=\lim\limits_{x\to\pm\infty},$$
+
+$$b=\lim\limits_{x\to\pm\infty}.$$
 
 \end{document}

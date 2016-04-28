@@ -3,11 +3,13 @@ latex = require 'gulp-latex'
 notify = require 'gulp-notify'
 plumber = require 'gulp-plumber'
 watch = require 'gulp-watch'
+cache = require 'gulp-cached'
 
 paths = 'src/*.tex'
 
 gulp.task 'latex', ->
   gulp.src(paths)
+  .pipe cache('rendering')
   .pipe plumber()
   .pipe latex({command: 'pdflatex', format: 'pdf'})
   .pipe notify('LaTeX has been renewed!')
