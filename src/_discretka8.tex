@@ -1,0 +1,268 @@
+\documentclass[fleqn]{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{>=latex}
+
+\usetikzlibrary{arrows.meta}
+
+\usepackage{xcolor,colortbl}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\DeclareMathOperator{\sign}{sign}
+
+\title{Контрольная работа по курсу «Элементы дискретной математики»\\
+Вариант №8}
+
+\begin{document}
+\date{}
+\maketitle
+\section*{Задание № 1.}
+
+Даны множества чисел: $A=\{2,3,5,6\}$, $B=\{5,6,7,8\}$, $C=\{3,4,6,8\}$ и универсальное множество $U=\{2,3,4,5,6,7,8,9\}$.
+
+Найти множества чисел $D=(B\cap C)\cup \overline{A\cup C},\;\; E=((B\cup \overline{C})\setminus A)\cup(C\cap B)$. Являются ли множества $E$ и $D$ равными? эквивалентными? включающими одно в другое ( $D \subset E$ или $E \subset D$ )? пересекающимися, но не включающими одно в другое? непересекающимися $(D\cap E=\varnothing)$?
+
+\begin{center}Решение:\end{center}
+
+Для нахождения множества $D$ сначала найдем: пересечение $B\cap C=\{6,8\}$, объединение $A\cup C=\{2,3,4,5,6,8\}$, и его дополнение (до множества $U$) $\overline{A\cup C}=\{7,9\}$. Теперь $D=\{6,8\}\cup\{7,9\}=\{6,7,8,9\}$.
+
+Для нахождения множества $E$ сначала найдем: дополнение $C$ (до множества $U$) $\overline{C}=\{2,5,7,9\}$, затем объединение $B\cup \overline{C}=\{2,5,6,7,8,9\}$, разность множеств $(B\cup \overline{C})\setminus A=\{7,8,9\}$, затем пересечение $C\cap B=\{6,8\}$. Теперь $E=\{7,8,9\}\cup\{6,8\}=\{6,7,8,9\}$.
+
+Множества $D$ и $E$ - равные так состоят из одних и тех же элементов.
+
+\section*{Задание № 2.}
+
+Согласно опросу $250$ телезрителей $95$ из них нравится смотреть новости, $125$ предпочитают смотреть спорт, $125$ – комедии, $25$ – новости и комедии, $45$ – спорт и комедии, $35$ – новости и спорт, $5$ любят смотреть три вида программ. Сколько телезрителей смотрят спорт и комедии, но не смотрят новости?
+
+Решить задачу, используя теорию множеств.
+
+\begin{center}Решение:\end{center}
+
+Пусть $|A|$, $|B|$ и $|C|$ --- число телезрителей, предпочитающих смотреть новости, спорт и комедии соответственно. По условию $|A|=95$, $|B|=125$, $|C|=125$, $|A\cap B|=35$, $|A\cap C|=25$, $|B\cap C|=45$, $|A\cap B\cap C|=5$. Телезрители, которым нравятся и спорт и комедии (их число нам известно из условия), бывают двух типов: 1) которым нравятся новости и 2) которые не смотрят новости. Получается что телезрители первого типа любят смотреть три вида программ, а их число нам известно, значит число телезрителей второго типа (которое и требуется найти в задаче) найдём очень просто:
+
+$$|(B\cap C)\setminus A|=|B\cap C|-|A\cap B\cap C|=45-5=40.$$
+
+
+\section*{Задание № 3.}
+
+Установить вид формулы алгебры логики:
+$$L = ((A \leftrightarrow B) \wedge C) \vee (A \to (B \vee \overline{C} )).$$
+
+\begin{center}Решение:\end{center}
+
+\medskip
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+$A$ & $B$ & $C$ & $A \leftrightarrow B$ & $(A \leftrightarrow B) \wedge C$ & $B \vee \overline{C}$ & $A\to(B\vee\overline{C})$ & $L$ \\
+\hline
+0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+\hline
+0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 \\
+\hline
+0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 \\
+\hline
+0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 \\
+\hline
+1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+\hline
+1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+\hline
+1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 \\
+\hline
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+\end{tabular}
+\medskip
+
+Из полученной таблицы видно, что формула $L$ является выполнимой, так как она принимает значение $1$, но не является тождественно выполнимой (тавтологией), ибо при $A=1, B=0, C=1$ она принимает значение $0$.
+
+\section*{Задание № 4.}
+
+С помощью таблицы истинности найти СДНФ и СКНФ булевой
+функции $f(x_1,x_2)=x_1 \vee x_2 \to(x_1 \leftrightarrow x_2)$.
+
+\begin{center}Решение:\end{center}
+
+\medskip
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$x_1$ & $x_2$ & $x_1 \vee x_2$ & $x_1 \leftrightarrow x_2$ & $f(x_1,x_2)$ \\
+\hline
+0 & 0 & 0 & 1 & 1 \\
+\hline
+0 & 1 & 1 & 0 & 0 \\
+\hline
+1 & 0 & 1 & 0 & 0 \\
+\hline
+1 & 1 & 1 & 1 & 1 \\
+\hline
+\end{tabular}
+\medskip
+
+1) Функция $f(x_1, x_2)$ равна $1$ на наборах $(x_1, x_2)$: $(0;0)$ и $(1;1)$, т.е. соответствующие конъюнкции (над равными $0$ переменными ставим знак отрицания) $\overline{x_1} \wedge \overline{x_2}$ и $x_1 \wedge x_2$. Соединяя их знаками дизъюнкции, получим СДНФ функции:
+
+$$f(x_1, x_2)=(\overline{x_1}\wedge\overline{x_2})\vee(x_1\wedge x_2).$$
+
+2) Функция $f(x_1, x_2)$ равна $0$ на наборах $(x_1, x_2)$: $(0;1)$ и $(1;0)$, т.е. соответствующие дизъюнкции (над равными $1$ переменными ставим знак отрицания) $x_1 \vee \overline{x_2}$ и $\overline{x_1} \vee x_2$. Соединяя их знаками конъюнкции, получим СКНФ функции:
+
+$$f(x_1, x_2)=(x_1\vee\overline{x_2})\wedge(\overline{x_1}\vee x_2).$$
+
+\section*{Задание № 5.}
+
+Даны матрицы:
+
+$$A=
+\begin{pmatrix}
+0 & 1 & 0 & 1 & 1 \\
+1 & 1 & 1 & 0 & 1 \\
+0 & 1 & 0 & 1 & 0 \\
+1 & 0 & 1 & 0 & 1 \\
+1 & 1 & 0 & 1 & 0 \\
+\end{pmatrix}
+\quad
+\textit{и}
+\quad
+B=
+\begin{pmatrix}
+1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+\end{pmatrix}.
+$$
+
+Построить неориентированные графы, для которых матрица $A$ является
+матрицей смежности, а матрица $B$ – матрицей инцидентности.
+
+\begin{center}Решение:\end{center}
+
+Так как матрица $A$ имеет размерость равную пяти, то граф должен иметь пять вершин. Единица на диагонали говорит о том что вторая вершина будет смежной сама с собой, значит в этой вершине петля. Изобразим граф для которого матрица $A$ является матрицей смежности:
+
+\medskip
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-3,3) {$v_1$};
+    \node (B) at (3,3) {$v_2$};
+    \node (C) at (4,-2) {$v_3$};
+    \node (D) at (0,-4) {$v_4$};
+    \node (E) at (-4,-2) {$v_5$};
+\end{scope}
+
+\begin{scope}[-,
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick},
+              every loop/.style={}]
+    \path (A) edge node {$x_1$} (B);
+    \path (A) edge[bend left=12] node[pos=0.75] {$x_2$} (D);
+    \path (A) edge node {$x_3$} (E);
+    \path (B) edge node {$x_4$} (A);
+    \path (B) edge[loop above] node {$x_5$} (B);
+    \path (B) edge[bend left=12] node {$x_6$} (C);
+    \path (B) edge[bend left=12] node {$x_7$} (E);
+    \path (C) edge[bend left=12] node {$x_8$} (B);
+    \path (C) edge[bend left=12] node {$x_9$} (D);
+    \path (D) edge[bend left=12] node[pos=0.75] {$x_{10}$} (A);
+    \path (D) edge[bend left=12] node {$x_{11}$} (C);
+    \path (D) edge node {$x_{12}$} (E);
+    \path (E) edge node {$x_{13}$} (A);
+    \path (E) edge[bend left=12] node[pos=0.75] {$x_{14}$} (B);
+    \path (E) edge node {$x_{15}$} (D);
+\end{scope}
+\end{tikzpicture}
+\medskip
+
+Так как матрица $B$ имеет пять строк и восемь столбцов, то граф должен иметь пять вершин и весемь рёбер. Единицы в столбцах соответствуют концам одного ребра. Так как в шестом столбце всего одна единица, то шестое ребро должно быть петлёй. Изобразим граф для которого матрица $B$ является матрицей инцидентности:
+
+\medskip
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-3,3) {$v_1$};
+    \node (B) at (3,3) {$v_2$};
+    \node (C) at (4,-2) {$v_3$};
+    \node (D) at (0,-4) {$v_4$};
+    \node (E) at (-4,-2) {$v_5$};
+\end{scope}
+
+\begin{scope}[-,
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick},
+              every loop/.style={}]
+    \path (A) edge node {$x_1$} (B);
+    \path (A) edge node[pos=0.75] {$x_2$} (D);
+    \path (A) edge node {$x_3$} (E);
+    \path (B) edge node {$x_4$} (C);
+    \path (B) edge node {$x_5$} (E);
+    \path (C) edge[loop below] node {$x_6$} (C);
+    \path (D) edge[bend left=12] node {$x_7$} (E);
+    \path (E) edge[bend left=12] node {$x_8$} (D);
+\end{scope}
+\end{tikzpicture}
+\medskip
+
+\section*{Задание № 6.}
+
+Определить функцию $f(x,y)$, полученную из функций $g(x) =1$ и
+$h(x, y, z) = \frac{x}{z}$ по схеме примитивной рекурсии.
+
+\begin{center}Решение:\end{center}
+
+Имеем по определению оператора примитивной рекурсии:
+
+1) $f(x,0)=g(x)=1$;
+
+2) $f(x,y+1)=h\left(x,y,f(x,y)\right)=\frac{x}{f(x,y)}$.
+
+Отсюда имеем:
+
+$$f(x,1)=\frac{x}{f(x,0)}=\frac{x}{1}=x;\quad f(x,2)=\frac{x}{f(x,1)}=\frac{x}{x}=1;\quad f(x,3)=\frac{x}{f(x,2)}=\frac{x}{1}=x;\quad\cdots$$
+
+Можно предположить, что $f(x,y)=
+\begin{cases}
+1 & , \textit{когда} \;y - \textit{чётное}, \\
+x & , \textit{когда} \;y - \textit{нечётное}.
+\end{cases}$ и доказать эту формулу
+методом математической индукции по переменной $y$.
+
+\end{document}

@@ -1,0 +1,250 @@
+\documentclass[fleqn]{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{>=latex}
+
+\usetikzlibrary{arrows.meta}
+
+\usepackage{xcolor,colortbl}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\DeclareMathOperator{\sign}{sign}
+
+\title{Контрольная работа по курсу «Элементы дискретной математики»\\
+Вариант №7}
+
+\begin{document}
+\date{}
+\maketitle
+\section*{Задание № 1.}
+
+Даны множества чисел: $A=\{1,2,4,5\}$, $B=\{4,5,6,7\}$, $C=\{2,3,5,7\}$ и универсальное множество $U=\{1,2,3,4,5,6,7,8\}$.
+
+Найти множества чисел $D=(A\cap C)\cup \overline{C\cup B},\;\; E=(\overline{B}\cap \overline{C})\cup(A\cap(C\setminus B))$. Являются ли множества $E$ и $D$ равными? эквивалентными? включающими одно в другое ( $D \subset E$ или $E \subset D$ )? пересекающимися, но не включающими одно в другое? непересекающимися $(D\cap E=\varnothing)$?
+
+\begin{center}Решение:\end{center}
+
+Для нахождения множества $D$ сначала найдем: пересечение $A\cap C=\{2,5\}$, объединение $C\cup B=\{2,3,4,5,6,7\}$, и его дополнение (до множества $U$) $\overline{C\cup B}=\{1,8\}$. Теперь $D=\{2,5\}\cup\{1,8\}=\{1,2,5,8\}$.
+
+Для нахождения множества $E$ сначала найдем: дополнения множеств $B$ и $C$ (до множества $U$) $\overline{B}=\{1,2,3,8\}$ и $\overline{C}=\{1,4,6,8\}$, затем пересечение $\overline{B}\cap \overline{C}=\{1,8\}$, разность множеств $C\setminus B=\{2,3\}$, затем пересечение $A\cap(C\setminus B)=\{2\}$. Теперь $E=\{1,8\}\cup\{2\}=\{1,2,8\}$.
+
+Множества $D$ и $E$ не равные потому что $5\in D$, но $5\notin E$, и не эквивалентные, так как имеют разные мощности (4 и 3 соответсвенно), причём множество $E$ включается в множество $D$ ($E \subset D$).
+
+\section*{Задание № 2.}
+
+Чемпионат по футболу проводится по круговой системе. За победу в матче даётся два очка, за ничью –- одно, а за поражение нуль. Если две команды набирают одинаковое количество очков, то место определяется по разности забитых и пропущенных мячей. Чемпион набрал семь очков, второй призер -- пять, третий –- три. Сколько очков набрала команда, занявшая последнее место?
+
+Задачу решить, используя теорию графов.
+
+\begin{center}Решение:\end{center}
+
+Пусть в чемпионате участвовало $n$ команд. Построим граф $G$ встреч. Поскольку в круговой системе каждый должен был сыграть с каждым, то граф $G$ --- полный. Он имеет $\frac{n(n-1)}{2}$ рёбер. Вне зависимости от исхода матча в любом матче разыгрывается два очка. Значит за время всего чемпионата было разыграно $n(n-1)$ очков. На долю призёров приходится $15$ очков, на долю всех остальных участников $n(n-1)-15$ очков. Каждая из остальных $(n-3)$ команд, не ставших призёрами не может набрать более трёх очков (ведь ровно столько у третьего призёра). Поэтому
+
+$$n(n-1)-15\leq3(n-3),$$
+
+$$(n-2)^2\leq10,$$
+
+$$n\leq5.$$
+
+Если бы в чемпионате участвовало $3$ или $4$ команды, то они набрали бы в сумме меньше $15$ очков. Поэтому в чемпионате участвовало $5$ команд, которые в сумме набрали $5\cdot(5-1)=20$ очков. На долю двух последних приходится $5$ очков. Одна из них набрала $3$, другая $2$ очка. (При другом делении очков, например $4$ и $1$, изменится состав призёров.)
+
+Следовательно, команда, занявшая последнее место набрала $2$ очка.
+
+Ответ: 2.
+
+\section*{Задание № 3.}
+
+Установить вид формулы алгебры логики:
+$$L = ((A \vee B) \wedge C) \to (A \leftrightarrow (B \vee \overline{C} )).$$
+
+\begin{center}Решение:\end{center}
+
+\medskip
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{6}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+$A$ & $B$ & $C$ & $A \vee B$ & $(A \vee B) \wedge C$ & $B \vee \overline{C}$ & $A\leftrightarrow(B\vee\overline{C})$ & $L$ \\
+\hline
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\
+\hline
+0 & 0 & 1 & 0 & 0 & 0 & 1 & 1 \\
+\hline
+0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\
+\hline
+0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
+\hline
+1 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\
+\hline
+1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+\hline
+1 & 1 & 0 & 1 & 0 & 1 & 1 & 1 \\
+\hline
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+\end{tabular}
+\egroup
+\medskip
+
+Из полученной таблицы видно, что формула $L$ является выполнимой, так как она принимает значение $1$, но не является тождественно выполнимой (тавтологией), ибо при определенных значениях высказываний она принимает значение $0$.
+
+\section*{Задание № 4.}
+
+Упростить формулу:
+
+$$\varphi=\overline{A\to B}\wedge\left(B\to\overline{A}\right).$$
+
+Проверить результат, используя таблицу истинности.
+
+\begin{center}Решение:\end{center}
+
+$$\varphi=\overline{A\to B}\wedge\left(B\to\overline{A}\right)=\overline{\overline{A}\vee B}\wedge\left(\overline{B}\vee\overline{A}\right)=\left(\overline{\overline{A}}\wedge\overline{B}\right)\wedge\left(\overline{B}\vee\overline{A}\right)=\left(A\wedge\overline{B}\right)\wedge\left(\overline{B}\vee\overline{A}\right)=$$
+
+$$=A\wedge\overline{B}\wedge\overline{B}\vee A\wedge\overline{B}\wedge\overline{A}=A\wedge\overline{B}\vee A\wedge\overline{B}\wedge\overline{A}=A\wedge\overline{B}\vee0\wedge\overline{B}=A\wedge\overline{B}\vee0=A\wedge\overline{B}.$$
+
+
+\medskip
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{6}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$A$ & $B$ & $A\to B$ & $\overline{A\to B}$ & $B\to\overline{A}$ & $\varphi=\overline{A\to B}\wedge\left(B\to\overline{A}\right)$ & $A\wedge\overline{B}$ \\
+\hline
+0 & 0 & 1 & 0 & 1 & 0 & 0 \\
+\hline
+0 & 1 & 1 & 0 & 1 & 0 & 0 \\
+\hline
+1 & 0 & 0 & 1 & 1 & 1 & 1 \\
+\hline
+1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+\hline
+\end{tabular}
+\egroup
+\medskip
+
+Значения в последних двух столбцах таблицы истинности совпадают, значит результат упрощения формулы $\varphi$ верен.
+
+\section*{Задание № 5.}
+
+Для орграфа, представленного на рисунке, найти матрицу смежности и матрицу инцидентности. Есть ли у данного графа циклы? Если есть, то приведите пример простого цикла.
+
+\medskip
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-3,0) {$1$};
+    \node (B) at (0,-2) {$5$};
+    \node (C) at (5,-2) {$4$};
+    \node (D) at (5,2) {$3$};
+    \node (E) at (0,2) {$2$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path [->] (B) edge node {$e_2$} (A);
+    \path [->] (B) edge[bend right=12] node {$e_5$} (E);
+    \path [->] (B) edge node {$e_8$} (C);
+    \path [->] (E) edge node {$e_3$} (D);
+    \path [->] (E) edge[bend right=12] node {$e_4$} (B);
+    \path [->] (D) edge[bend left=12] node {$e_7$} (C);
+    \path [->] (D) edge[bend right=12] node {$e_6$} (C);
+    \path [->] (E) edge node {$e_1$} (A);
+\end{scope}
+\end{tikzpicture}
+\medskip
+
+\begin{center}Решение:\end{center}
+
+Построим матрицы смежности и инцидентности:
+
+$$A=
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 1 \\
+0 & 0 & 0 & 2 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 0 \\
+\end{pmatrix};
+\quad
+B=
+\begin{pmatrix}
+-1 & -1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 & -1 & 0 & 0 & 0 \\
+0 & 0 & -1 & 0 & 0 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & -1 & -1 & -1 \\
+0 & 1 & 0 & -1 & 1 & 0 & 0 & 1 \\
+\end{pmatrix}.
+$$
+
+Данный граф содержит простой цикл $v_2 e_4 v_5 e_5 v_2$.
+
+(Кстати в методичке в определении понятия простой цикл нужно уточнить что вершины хоть и не должны повторяться, но разумеется за исключением начальной и конечной, без этого уточнения определение не корректно.)
+
+\section*{Задание № 6.}
+
+Определить функцию $f(x,y)$, полученную из функций $g(x)=0$ и
+$h(x, y, z) = x^2+z$ по схеме примитивной рекурсии.
+
+\begin{center}Решение:\end{center}
+
+Имеем по определению оператора примитивной рекурсии:
+
+1) $f(x,0)=g(x)=0$;
+
+2) $f(x,y+1)=h\left(x,y,f(x,y)\right)=x^2+f(x,y)$.
+
+Отсюда имеем:
+
+$f(x,1)=x^2+f(x,0)=x^2$;
+
+$f(x,2)=x^2+f(x,1)=x^2+x^2=2x^2$;
+
+$f(x,3)=x^2+f(x,2)=x^2+2x^2=3x^2$ и так далее.
+
+Можно предположить, что $f(x,y)=yx^2$, и доказать эту формулу
+методом математической индукции по переменной $y$.
+
+\end{document}

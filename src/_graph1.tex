@@ -1,0 +1,912 @@
+\documentclass[fleqn]{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{>=latex}
+
+\usetikzlibrary{arrows.meta}
+
+\usepackage{xcolor,colortbl}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\DeclareMathOperator{\sign}{sign}
+
+\title{Контрольная работа по курсу «Теория графов»\\
+Вариант №1}
+
+\begin{document}
+\date{}
+\maketitle
+\section*{Задание № 1.}
+
+По матрице смежности восстановите ориентированный граф $D$,
+взяв в качестве вершин $v_1$, $v_2$, $v_3$, $v_4$, $v_5$ пять произвольных точек плоскости. Найдите:
+
+1) матрицу инцидентности $B$, предварительно перенумеровав ребра;
+
+2) матрицу достижимости $T$;
+
+3) матрицу сильной связности;
+
+4) компоненты сильной связности.
+
+$$A = \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+1 & 0 & 1 & 1 & 0 \\
+\end{pmatrix}
+$$
+
+\begin{center}Решение:\end{center}
+
+Сначала восстановим ориентированный граф и пронумеруем его ребра.
+
+\medskip
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-2,2) {$v_1$};
+    \node (B) at (2,2) {$v_2$};
+    \node (C) at (2,-2) {$v_3$};
+    \node (D) at (0,0) {$v_4$};
+    \node (E) at (-2,-2) {$v_5$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path [->] (B) edge node {$x_1$} (A);
+    \path [->] (B) edge node {$x_2$} (D);
+    \path [->] (C) edge node {$x_3$} (B);
+    \path [->] (D) edge node {$x_4$} (C);
+    \path [->] (E) edge node {$x_5$} (A);
+    \path [->] (E) edge node {$x_6$} (C);
+    \path [->] (E) edge node {$x_7$} (D);
+\end{scope}
+\end{tikzpicture}
+
+1) Тогда матрицей инцидентности ориентированного графа $D$ будет
+
+$$B(D)=
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+-1 & -1 & 1 & 0 & 0 & 0 & 0 \\
+0 & 0 & -1 & 1 & 0 & 1 & 0 \\
+0 & 1 & 0 & -1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & -1 & -1 & -1 \\
+\end{pmatrix}
+$$
+\newpage
+2) Найдем матрицу достижимости ориентированного графа $D$:
+
+$$
+\sign{A^2} = \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 1 & 0 & 0 \\
+\end{pmatrix}
+;\quad
+\sign{A^3} = \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+1 & 1 & 0 & 1 & 0 \\
+\end{pmatrix}
+;\quad
+\sign{A^4} = \begin{pmatrix}
+0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 \\
+1 & 0 & 1 & 1 & 0 \\
+\end{pmatrix}.
+$$
+
+$T(D)= \sign{[E + A + A^2 + A^3 + A^4]}=$
+$$=\sign\left[\begin{pmatrix}
+1 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 0 & 0 & 0 & 1\\
+\end{pmatrix}
++
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 0\\
+1 & 0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0\\
+1 & 0 & 1 & 1 & 0\\
+\end{pmatrix}
++
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0\\
+1 & 0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 1 & 1 & 0 & 0\\
+\end{pmatrix}
++
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0\\
+1 & 0 & 0 & 1 & 0\\
+1 & 1 & 0 & 1 & 0\\
+\end{pmatrix}
++
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 0\\
+1 & 0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0\\
+1 & 0 & 1 & 1 & 0\\
+\end{pmatrix}\right]
+=$$
+$$=\begin{pmatrix}
+1 & 0 & 0 & 0 & 0\\
+1 & 1 & 1 & 1 & 0\\
+1 & 1 & 1 & 1 & 0\\
+1 & 1 & 1 & 1 & 0\\
+0 & 0 & 0 & 0 & 1\\
+\end{pmatrix}
+$$
+
+3) Найдем матрицу сильной связности ориентированного графа $D$:
+
+$$S(D)= T(D) \:\&\: T^T(D)=
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0\\
+1 & 1 & 1 & 1 & 0\\
+1 & 1 & 1 & 1 & 0\\
+1 & 1 & 1 & 1 & 0\\
+0 & 0 & 0 & 0 & 1\\
+\end{pmatrix}
+\:\&\:
+\begin{pmatrix}
+1 & 1 & 1 & 1 & 0\\
+0 & 1 & 1 & 1 & 0\\
+0 & 1 & 1 & 1 & 0\\
+0 & 1 & 1 & 1 & 0\\
+0 & 0 & 0 & 0 & 1\\
+\end{pmatrix}
+=\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 \\
+0 & 1 & 1 & 1 & 0 \\
+0 & 1 & 1 & 1 & 0 \\
+0 & 1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix}.
+$$
+
+4) Выделим компоненты связности ориентированного графа $D$.
+
+Присваиваем $p=1$, $S_1 = S(D)$ и составляем множество вершин
+первой компоненты сильной связности $D_1$: это те вершины, которым соответствуют единицы в первой строке матрицы $S(D)$. Таким образом, первая компонента сильной связности состоит из одной вершины $V_1=\{v_1\}$.
+
+Вычеркиваем из матрицы $S_1(D)$ строку и столбец,
+соответствующие вершине $v_1$, чтобы получить матрицу $S_2(D)$:
+
+$$S_2(D)=
+\begin{pmatrix}
+1 & 1 & 1 & 0 \\
+1 & 1 & 1 & 0 \\
+1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{pmatrix}.
+$$
+
+Присваиваем $p=2$. Множество вершин второй компоненты связности составят те вершины, которым соответствуют единицы в первой строке матрицы $S_2(D)$, то есть $V_2 = \{v_2, v_3, v_4\}$. Составляем
+матрицу смежности для компоненты сильной связности $D_2$ исходного
+графа $D$. Для этого возьмем подматрицу матрицы $A(D)$, состоящую из элементов матрицы $A$, находящихся на пересечении строк и столбцов, соответствующих вершинам из $V_2$:
+
+$$A(D_2)=
+\begin{pmatrix}
+0 & 0 & 1 \\
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+\end{pmatrix}
+$$
+
+Вычеркиваем из матрицы $S_2(D)$ строки и столбцы, соответствующие вершинам из $V_2$ ,чтобы получить матрицу $S_3(D)$, которая состоит из одного элемента: $S_3(D)=(1)$ и присваиваем $p=3$. Значит третья компонента сильной связности исходного графа, как и первая, состоит из одной вершины $V_3 = \{v_5\}$.
+
+Таким образом, выделены $3$ компоненты сильной связности ориентированного графа $D$:
+
+\medskip
+
+\begin{tikzpicture}
+\begin{scope}
+    \node (D1) at (-4.5,3) {$D_1:$};
+    \node (D2) at (0,3) {$D_2:$};
+    \node (D3) at (5.5,3) {$D_3:$};
+\end{scope}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-4,2) {$v_1$};
+    \node (B) at (2,2) {$v_2$};
+    \node (C) at (2,-2) {$v_3$};
+    \node (D) at (0,0) {$v_4$};
+    \node (E) at (6,2) {$v_5$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path [->] (B) edge (D);
+    \path [->] (C) edge (B);
+    \path [->] (D) edge (C);
+\end{scope}
+\end{tikzpicture}
+
+\section*{Задание № 2.}
+
+Дан ориентированный граф $D$.
+
+1. Найдите матрицу смежности $A$.
+
+2. С помощью алгоритма фронта волны найдите расстояния в
+ориентированном графе $D$, диаметр, радиус и центры.
+
+\medskip
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-2.5,1) {$v_1$};
+    \node (B) at (0,3) {$v_2$};
+    \node (C) at (2.5,1) {$v_3$};
+    \node (D) at (1.8,-2.2) {$v_4$};
+    \node (E) at (-1.8,-2.2) {$v_5$};
+    \node (F) at (0,0) {$v_6$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path [->] (A) edge (E);
+    \path [->] (A) edge (F);
+    \path [->] (B) edge (A);
+    \path [->] (B) edge (C);
+    \path [->] (B) edge (E);
+    \path [->] (D) edge (E);
+    \path [->] (E) edge (F);
+    \path [->] (F) edge (B);
+    \path [->] (F) edge (C);
+    \path [->] (F) edge (D);
+    \path [->] (C) edge[bend left=10] (D);
+    \path [->] (D) edge[bend left=10] (C);
+\end{scope}
+\end{tikzpicture}
+
+\begin{center}Решение:\end{center}
+
+1) Матрица смежности ориентированного графа $D$ имеет вид:
+
+$$A(D)=
+\begin{pmatrix}
+0 & 0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 1 & 1 & 0 & 0 \\
+\end{pmatrix}
+$$
+
+2) Заполним матрицу минимальных расстояний, сперва поставив нули по главной диагонали, затем перенеся единицы из матрицы смежности, и после этого используя алгоритм фронта волны для каждой из оставшихся пар вершин графа $D$. А именно: фиксикуем строку, смотрим в какие неотмеченные вершины мы можем попасть из единичек в данной строке за один шаг и заполняем их двойками. Так заполняем двойками все строки. Далее смотрим в какие неотмеченные вершины мы можем попасть за один шаг из вершин с двойками в этой строке и заполняем их тройками. Затем четвёрками, затем пятёрками.
+
+$$R(D)=
+\begin{pmatrix}
+0 & 2 & 2 & 2 & 1 & 1 \\
+1 & 0 & 1 & 2 & 1 & 2 \\
+5 & 4 & 0 & 1 & 2 & 3 \\
+4 & 3 & 1 & 0 & 1 & 2 \\
+3 & 2 & 2 & 2 & 0 & 1 \\
+2 & 1 & 1 & 1 & 2 & 0 \\
+\end{pmatrix}
+$$
+
+Из матрицы $R(D)$ минимальных расстояний находим диаметр:
+
+$$d(D)=\max\limits_{v,w\in V} d(v,w)=r_{31}=5.$$
+
+Для каждой вершины ориентированного графа $D$ найдем эксцентриситет (максимальное удаление от вершины) по формуле $r(v)=\max\limits_{w\in V} d(v,w)$:
+
+$$r(v_1)=2,\quad r(v_2)=2,\quad r(v_3)=5,\quad r(v_4)=4,\quad r(v_5)=3,\quad r(v_6)=2.$$
+
+Значит радиусом графа $D$ будет:
+
+$$r(D)=\min\limits_{v\in V}r(v)=2.$$
+
+Центрами графа будут являться три вершины $v_1$, $v_2$, $v_6$, так как все они имеют минимальный эксцентриситет.
+
+\section*{Задание № 3.}
+
+Найдите минимальный путь в нагруженном ориентированном графе $D$ по методу Форда-Беллмана из указанной вершины в указанную.
+
+Из $v_1$ в $v_5$.
+
+\medskip
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-4,0) {$v_1$};
+    \node (B) at (-2,3) {$v_2$};
+    \node (C) at (2,3) {$v_3$};
+    \node (D) at (4,0) {$v_4$};
+    \node (E) at (2,-3) {$v_5$};
+    \node (F) at (-2,-3) {$v_6$};
+    \node (G) at (0,0) {$v_7$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path [->] (A) edge node {$2$} (B);
+    \path [->] (A) edge node[pos=0.75] {$9$} (C);
+    \path [->] (B) edge node {$5$} (C);
+    \path [->] (B) edge node[pos=0.75] {$8$} (F);
+    \path [->] (C) edge node {$10$} (D);
+    \path [->] (C) edge node {$12$} (G);
+    \path [->] (D) edge[bend left=15] node {$8$} (E);
+    \path [->] (D) edge node {$3$} (G);
+    \path [->] (E) edge[bend left=15] node {$11$} (D);
+    \path [->] (F) edge node {$2$} (E);
+    \path [->] (F) edge node {$20$} (A);
+    \path [->] (G) edge node[pos=0.25] {$14$} (A);
+    \path [->] (G) edge node[pos=0.25] {$11$} (B);
+    \path [->] (G) edge node {$1$} (F);
+    \path [->] (G) edge[bend left=15] node {$7$} (E);
+    \path [->] (E) edge[bend left=15] node {$6$} (G);
+\end{scope}
+\end{tikzpicture}
+
+\begin{center}Решение:\end{center}
+
+Матрица длин дуг для нагруженного ориентированного графа $D$ будет следующей:
+$$C(D)=
+\begin{pmatrix}
+\infty & 2 & 9 & \infty & \infty & \infty & \infty \\
+\infty & \infty & 5 & \infty & \infty & 8 & \infty \\
+\infty & \infty & \infty & 10 & \infty & \infty & 12 \\
+\infty & \infty & \infty & \infty & 8 & \infty & 3 \\
+\infty & \infty & \infty & 11 & \infty & \infty & 6 \\
+20 & \infty & \infty & \infty & 2 & \infty & \infty \\
+14 & 11 & \infty & \infty & 7 & 1 & \infty \\
+\end{pmatrix}
+$$
+
+Согласно алгоритму метода Форда-Беллмана, составляем таблицу стоимости минимальных путей из вершины $v_1$ в вершину $v_i$ не более, чем за $k$ шагов. Заполняем первую строку нулями, а элементы первого столбца, кроме первого, заполняем $\infty$. Второй столбец, кроме первого элемента, заполняем первой строкой матрицы длин дуг $C(D)$. Далее каждый следующий столбец получаем находя минимум чисел полученых сложением соответствующих элементов предыдущего столбца таблицы с элементами соответствующего столбца матрицы длин дуг $C(D)$.
+
+\medskip
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{6}
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & $\lambda_i^{(0)}$ & $\lambda_i^{(1)}$ & $\lambda_i^{(2)}$ & $\lambda_i^{(3)}$ & $\lambda_i^{(4)}$ & $\lambda_i^{(5)}$ & $\lambda_i^{(6)}$ \\
+\hline
+$v_1$ & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+\hline
+$v_2$ & $\infty$ & 2 & 2 & 2 & 2 & 2 & 2 \\
+\hline
+$v_3$ & $\infty$ & 9 & 7 & 7 & 7 & 7 & 7 \\
+\hline
+$v_4$ & $\infty$ & $\infty$ & 19 & 17 & 17 & 17 & 17 \\
+\hline
+$v_5$ & $\infty$ & $\infty$ & $\infty$ & 12 & 12 & 12 & 12 \\
+\hline
+$v_6$ & $\infty$ & $\infty$ & 10 & 10 & 10 & 10 & 10 \\
+\hline
+$v_7$ & $\infty$ & $\infty$ & 21 & 19 & 18 & 18 & 18 \\
+\hline
+\end{tabular}
+\egroup
+\medskip
+
+$\lambda_2^{(2)} =\min\{0+2,\; 2+\infty,\; 9+\infty,\; \infty+\infty,\; \infty+\infty,\; \infty+\infty,\; \infty+11\}=2.$
+
+$\lambda_3^{(2)} =\min\{0+9,\; 2+5,\; 9+\infty,\; \infty+\infty,\; \infty+\infty,\; \infty+\infty,\; \infty+\infty\}=7.$
+
+$\lambda_4^{(2)} =\min\{0+\infty,\; 2+\infty,\; 9+10,\; \infty+\infty,\; \infty+11,\; \infty+\infty,\; \infty+\infty\}=19.$
+
+$\lambda_5^{(2)} =\min\{0+\infty,\; 2+\infty,\; 9+\infty,\; \infty+8,\; \infty+\infty,\; \infty+2,\; \infty+7\}=\infty.$
+
+$\lambda_6^{(2)} =\min\{0+\infty,\; 2+8,\; 9+\infty,\; \infty+\infty,\; \infty+\infty,\; \infty+\infty,\; \infty+1\}=10.$
+
+$\lambda_7^{(2)} =\min\{0+\infty,\; 2+\infty,\; 9+12,\; \infty+3,\; \infty+6,\; \infty+\infty,\; \infty+\infty\}=21.$
+
+\medskip
+
+$\lambda_2^{(3)} =\min\{0+2,\; 2+\infty,\; 7+\infty,\; 19+\infty,\; \infty+\infty,\; 10+\infty,\; 21+11\}=2.$
+
+$\lambda_3^{(3)} =\min\{0+9,\; 2+5,\; 7+\infty,\; 19+\infty,\; \infty+\infty,\; 10+\infty,\; 21+\infty\}=7.$
+
+$\lambda_4^{(3)} =\min\{0+\infty,\; 2+\infty,\; 7+10,\; 19+\infty,\; \infty+11,\; 10+\infty,\; 21+\infty\}=17.$
+
+$\lambda_5^{(3)} =\min\{0+\infty,\; 2+\infty,\; 7+\infty,\; 19+8,\; \infty+\infty,\; 10+2,\; 21+7\}=12.$
+
+$\lambda_6^{(3)} =\min\{0+\infty,\; 2+8,\; 7+\infty,\; 19+\infty,\; \infty+\infty,\; 10+\infty,\; 21+1\}=10.$
+
+$\lambda_7^{(3)} =\min\{0+\infty,\; 2+\infty,\; 7+12,\; 19+3,\; \infty+6,\; 10+\infty,\; 21+\infty\}=19.$
+
+
+\medskip
+
+$\lambda_2^{(4)} =\min\{0+2,\; 2+\infty,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 19+11\}=2.$
+
+$\lambda_3^{(4)} =\min\{0+9,\; 2+5,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 19+\infty\}=7.$
+
+$\lambda_4^{(4)} =\min\{0+\infty,\; 2+\infty,\; 7+10,\; 17+\infty,\; 12+11,\; 10+\infty,\; 19+\infty\}=17.$
+
+$\lambda_5^{(4)} =\min\{0+\infty,\; 2+\infty,\; 7+\infty,\; 17+8,\; 12+\infty,\; 10+2,\; 19+7\}=12.$
+
+$\lambda_6^{(4)} =\min\{0+\infty,\; 2+8,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 19+1\}=10.$
+
+$\lambda_7^{(4)} =\min\{0+\infty,\; 2+\infty,\; 7+12,\; 17+3,\; 12+6,\; 10+\infty,\; 19+\infty\}=18.$
+
+\medskip
+
+$\lambda_2^{(5)} =\min\{0+2,\; 2+\infty,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 18+11\}=2.$
+
+$\lambda_3^{(5)} =\min\{0+9,\; 2+5,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 18+\infty\}=7.$
+
+$\lambda_4^{(5)} =\min\{0+\infty,\; 2+\infty,\; 7+10,\; 17+\infty,\; 12+11,\; 10+\infty,\; 18+\infty\}=17.$
+
+$\lambda_5^{(5)} =\min\{0+\infty,\; 2+\infty,\; 7+\infty,\; 17+8,\; 12+\infty,\; 10+2,\; 18+7\}=12.$
+
+$\lambda_6^{(5)} =\min\{0+\infty,\; 2+8,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 18+1\}=10.$
+
+$\lambda_7^{(5)} =\min\{0+\infty,\; 2+\infty,\; 7+12,\; 17+3,\; 12+6,\; 10+\infty,\; 18+\infty\}=18.$
+
+\medskip
+
+$\lambda_2^{(6)} =\min\{0+2,\; 2+\infty,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 18+11\}=2.$
+
+$\lambda_3^{(6)} =\min\{0+9,\; 2+5,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 18+\infty\}=7.$
+
+$\lambda_4^{(6)} =\min\{0+\infty,\; 2+\infty,\; 7+10,\; 17+\infty,\; 12+11,\; 10+\infty,\; 18+\infty\}=17.$
+
+$\lambda_5^{(6)} =\min\{0+\infty,\; 2+\infty,\; 7+\infty,\; 17+8,\; 12+\infty,\; 10+2,\; 18+7\}=12.$
+
+$\lambda_6^{(6)} =\min\{0+\infty,\; 2+8,\; 7+\infty,\; 17+\infty,\; 12+\infty,\; 10+\infty,\; 18+1\}=10.$
+
+$\lambda_7^{(6)} =\min\{0+\infty,\; 2+\infty,\; 7+12,\; 17+3,\; 12+6,\; 10+\infty,\; 18+\infty\}=18.$
+
+\medskip
+
+Теперь необходимо по построенной таблице и по матрице $C(D)$ восстановить минимальный путь из вершины $v_1$ в $v_5$, который будет строиться с конца, то есть начиная с вершины $v_5$.
+
+Для этого выбираем минимальное из чисел, стоящих в строке, соответствующей $v_5$ в таблице. Это число – $12$ – длина минимального искомого пути. В первый раз такая длина была получена при количестве шагов, равном $3$.
+
+В вершину $v_5$ мы можем попасть за один шаг из вершин $v_4$, $v_6$ и $v_7$ (длина соответствующих дуг $8$, $2$ и $7$ соответственно – данные из матрицы $C(D)$). Выбираем минимальную по длине из этих дуг. Далее, в вершину $v_6$ можно за два хода попасть только через вершину $v_2$.
+
+Таким образом искомый путь за $3$ шага минимальной длины из вершины $v_1$ в $v_5$: $\langle v_1, v_2, v_6, v_5\rangle$.
+
+\section*{Задание № 4.}
+
+Найдите минимальное остовное дерево в неориентированном нагруженном графе.
+
+\medskip
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-4,0) {$v_1$};
+    \node (B) at (-2,3) {$v_2$};
+    \node (C) at (2,3) {$v_3$};
+    \node (D) at (4,0) {$v_4$};
+    \node (E) at (2,-3) {$v_5$};
+    \node (F) at (-2,-3) {$v_6$};
+    \node (G) at (-1,0) {$v_7$};
+\end{scope}
+
+\begin{scope}[-,
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path (A) edge node {$4$} (B);
+    \path (A) edge node[pos=0.65] {$12$} (C);
+    \path (B) edge node {$2$} (C);
+    \path (C) edge node {$10$} (D);
+    \path (C) edge node[pos=0.75] {$1$} (F);
+    \path (C) edge node {$2$} (G);
+    \path (C) edge node[pos=0.25] {$4$} (E);
+    \path (D) edge node {$9$} (E);
+    \path (D) edge node[pos=0.65] {$5$} (G);
+    \path (D) edge node[pos=0.75] {$7$} (F);
+    \path (F) edge node {$10$} (E);
+    \path (F) edge node {$16$} (A);
+    \path (G) edge node {$5$} (A);
+    \path (G) edge node[pos=0.75] {$1$} (B);
+    \path (G) edge node {$12$} (F);
+    \path (G) edge node[pos=0.35] {$3$} (E);
+\end{scope}
+\end{tikzpicture}
+
+\begin{center}Решение:\end{center}
+
+$$
+C(G)=
+\begin{pmatrix}
+0 & 4 & 12 & \infty & \infty & 16 & 5 \\
+4 & 0 & 2 & \infty & \infty & \infty & 1 \\
+12 & 2 & 0 & 10 & 4 & 1 & 2 \\
+\infty & \infty & 10 & 0 & 9 & 7 & 5 \\
+\infty & \infty & 4 & 9 & 0 & 10 & 3 \\
+16 & \infty & 1 & 7 & 10 & 0 & 12 \\
+5 & 1 & 2 & 5 & 3 & 12 & 0 \\
+\end{pmatrix}
+$$
+
+$G_2=(\{v_2,v_7\},\{x_{27}\})$,\quad $l(G_2)=c_{27}=1$;
+
+$G_3=(\{v_2,v_7,v_3\},\{x_{27},x_{73}\})$,\quad $l(G_3)=l(G_2)+c_{73}=1+2=3$;
+
+$G_4=(\{v_2,v_7,v_3,v_6\},\{x_{27},x_{73},x_{36}\})$,\quad $l(G_4)=l(G_3)+c_{36}=3+1=4$;
+
+$G_5=(\{v_5,v_2,v_7,v_3,v_6\},\{x_{75},x_{27},x_{73},x_{36}\})$,\quad $l(G_5)=l(G_4)+c_{75}=4+3=7$;
+
+$G_6=(\{v_5,v_2,v_7,v_3,v_6,v_1\},\{x_{75},x_{27},x_{73},x_{36},x_{12}\})$,\quad $l(G_6)=l(G_5)+c_{12}=7+4=11$;
+
+$G_7=(\{v_5,v_2,v_7,v_3,v_6,v_1,v_4\},\{x_{75},x_{27},x_{73},x_{36},x_{12},x_{74}\})$,\quad $l(G_7)=l(G_6)+c_{74}=11+5=16$;
+
+Поскольку $i=7=n(G)$, то работа алгоритма на этом заканчивается.
+
+Таким образом, искомое минимальное остовное дерево графа $G$ --− это граф $G_7$, изображенный ниже, длина которого равна $16$.
+
+\medskip
+
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-4,0) {$v_1$};
+    \node (B) at (-2,3) {$v_2$};
+    \node (C) at (2,3) {$v_3$};
+    \node (D) at (4,0) {$v_4$};
+    \node (E) at (2,-3) {$v_5$};
+    \node (F) at (-2,-3) {$v_6$};
+    \node (G) at (-1,0) {$v_7$};
+\end{scope}
+
+\begin{scope}[-,
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path (A) edge node {$4$} (B);
+    \path (C) edge node[pos=0.75] {$1$} (F);
+    \path (C) edge node {$2$} (G);
+    \path (G) edge node {$5$} (D);
+    \path (G) edge node {$3$} (E);
+    \path (G) edge node {$1$} (B);
+\end{scope}
+\end{tikzpicture}
+
+\section*{Задание № 5.}
+
+Методом ветвей и границ найдите оптимальный путь коммивояжёра при следующей матрице стоимости.
+
+\medskip
+
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 4 & 5 \\
+\hline
+1 & $\infty$ & 6 & 2 & 4 & 8 \\
+\hline
+2 & 6 & $\infty$ & 2 & 7 & 3 \\
+\hline
+3 & 2 & 2 & $\infty$ & 9 & 12 \\
+\hline
+4 & 4 & 7 & 9 & $\infty$ & 1 \\
+\hline
+5 & 8 & 3 & 12 & 1 & $\infty$ \\
+\hline
+\end{tabular}
+
+\begin{center}Решение:\end{center}
+
+Приведём матрицу по строкам:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 4 & 5 \\
+\hline
+1 & $\infty$ & 4 & 0 & 2 & 6 \\
+\hline
+2 & 4 & $\infty$ & 0 & 5 & 1 \\
+\hline
+3 & 0 & 0 & $\infty$ & 7 & 10 \\
+\hline
+4 & 3 & 6 & 8 & $\infty$ & 0 \\
+\hline
+5 & 7 & 2 & 11 & 0 & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+По столбцам матрицу приводить уже не надо, так как в каждом столбце есть $0$.
+
+Обозначим полученную выше матрицу за $C_1$.
+
+Сумма констант приведения $\varphi\left(\Gamma\right)=2+2+2+1+1=8$.
+
+Найдём веса нулей в матрице $C_1$:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 4 & 5 \\
+\hline
+1 & $\infty$ & 4 & $0_{(2)}$ & 2 & 6 \\
+\hline
+2 & 4 & $\infty$ & $0_{(1)}$ & 5 & 1 \\
+\hline
+3 & $0_{(3)}$ & $0_{(2)}$ & $\infty$ & 7 & 10 \\
+\hline
+4 & 3 & 6 & 8 & $\infty$ & $0_{(4)}$ \\
+\hline
+5 & 7 & 2 & 11 & $0_{(4)}$ & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+Самыми тяжёлыми оказались нули в клетках $(4,5)$ и $(5,4)$. Мы можем выбрать любую из них, пусть это будет клетка $(5,4)$.
+
+Матрицу $C_{1,1}$, которая соответстует множеству $\Gamma_{\{(5,4)\}}$, получим вычеркиванием четвёртого столбца и пятой строки из матрицы $C_1$, причём число в клетке $(4,5)$ нужно заменить на $\infty$, чтобы не получалось коротких циклов:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 5 \\
+\hline
+1 & $\infty$ & 4 & 0 & 6 \\
+\hline
+2 & 4 & $\infty$ & 0 & 1 \\
+\hline
+3 & 0 & 0 & $\infty$ & 10 \\
+\hline
+4 & 3 & 6 & 8 & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+После приведения матрица $C_{1,1}$ будет иметь следующий вид:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 5 \\
+\hline
+1 & $\infty$ & 4 & 0 & 5 \\
+\hline
+2 & 4 & $\infty$ & 0 & 0 \\
+\hline
+3 & 0 & 0 & $\infty$ & 9 \\
+\hline
+4 & 0 & 3 & 5 & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+$\varphi\left(\Gamma_{\{(5,4)\}}\right)=\varphi\left(\Gamma\right)+3+1=8+3+1=12$.
+
+Множеству же $\Gamma_{\{\overline{(5,4)}\}}$, соответствует матрица $C_{1,2}$, полученная заменой на $\infty$ элемента $(5,4)$ в матрице $C_1$:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 4 & 5 \\
+\hline
+1 & $\infty$ & 4 & 0 & 2 & 6 \\
+\hline
+2 & 4 & $\infty$ & 0 & 5 & 1 \\
+\hline
+3 & 0 & 0 & $\infty$ & 7 & 10 \\
+\hline
+4 & 3 & 6 & 8 & $\infty$ & 0 \\
+\hline
+5 & 7 & 2 & 11 & $\infty$ & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+Матрица $C_{1,2}$ после приведения:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 4 & 5 \\
+\hline
+1 & $\infty$ & 4 & 0 & 0 & 6 \\
+\hline
+2 & 4 & $\infty$ & 0 & 3 & 1 \\
+\hline
+3 & 0 & 0 & $\infty$ & 5 & 10 \\
+\hline
+4 & 3 & 6 & 8 & $\infty$ & 0 \\
+\hline
+5 & 5 & 0 & 9 & $\infty$ & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+$\varphi\left(\Gamma_{\{\overline{(5,4)}\}}\right)=8+2+2=12$
+
+В нашем случае $\varphi\left(\Gamma_{\{\overline{(5,4)}\}}\right)=\varphi\left(\Gamma_{\{(5,4)\}}\right)=12$, значит для дальнейшей обработки мы можем выбрать любое из множеств $\Gamma_{\{(5,4)\}}$ или $\Gamma_{\{\overline{(5,4)}\}}$, пусть это будет множество $\Gamma_{\{(5,4)\}}$.
+
+Посчитаем веса нулей в матрице $C_{1,1}$:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 5 \\
+\hline
+1 & $\infty$ & 4 & $0_{(4)}$ & 5 \\
+\hline
+2 & 4 & $\infty$ & $0_{(0)}$ & $0_{(5)}$ \\
+\hline
+3 & $0_{(0)}$ & $0_{(3)}$ & $\infty$ & 9 \\
+\hline
+4 & $0_{(3)}$ & 3 & 5 & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+Самым тяжёлым является нуль с номером $(2,5)$, так что теперь следует рассматривать множества $\Gamma_{\{(5,4);(2,5)\}}$ и $\Gamma_{\{(5,4);\overline{(2,5)}\}}$.
+
+Матрицу $C_{1,1,1}$ получим вычеркиванием пятого столбца и второй строки из матрицы $C_{1,1}$, причём число в клетке $(4,2)$ нужно будет заменить на $\infty$:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 \\
+\hline
+1 & $\infty$ & 4 & 0 \\
+\hline
+3 & 0 & 0 & $\infty$ \\
+\hline
+4 & 0 & $\infty$ & 5 \\
+\hline
+\end{tabular}
+\medskip
+
+Она сразу получилась приведённой так что $\varphi\left(\Gamma_{\{(5,4);(2,5)\}}\right)=12$.
+
+Матрицу же $C_{1,1,2}$, получим заменой на $\infty$ элемента $(2,5)$ в матрице $C_{1,1}$:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 5 \\
+\hline
+1 & $\infty$ & 4 & 0 & 5 \\
+\hline
+2 & 4 & $\infty$ & 0 & $\infty$ \\
+\hline
+3 & 0 & 0 & $\infty$ & 9 \\
+\hline
+4 & 0 & 3 & 5 & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+После приведения она будет иметь вид:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 & 5 \\
+\hline
+1 & $\infty$ & 4 & 0 & 0 \\
+\hline
+2 & 4 & $\infty$ & 0 & $\infty$ \\
+\hline
+3 & 0 & 0 & $\infty$ & 4 \\
+\hline
+4 & 0 & 3 & 5 & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+$\varphi\left(\Gamma_{\{(5,4);\overline{(2,5)}\}}\right)=12+5=17$.
+
+Следовательно дальнейшей обработке подлежит множество $\Gamma_{\{(5,4);(2,5)\}}$.
+
+
+Найдём веса нулей матрицы $C_{1,1,1}$:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 & 3 \\
+\hline
+1 & $\infty$ & 4 & $0_{(9)}$ \\
+\hline
+3 & $0_{(0)}$ & $0_{(4)}$ & $\infty$ \\
+\hline
+4 & $0_{(5)}$ & $\infty$ & 5 \\
+\hline
+\end{tabular}
+\medskip
+
+Самым тяжёлым является нуль с номером $(1,3)$, так что теперь следует рассматривать множества $\Gamma_{\{(5,4);(2,5);(1,3)\}}$ и $\Gamma_{\{(5,4);(2,5);\overline{(1,3)}\}}$.
+
+Матрицу $C_{1,1,1,1}$ получим вычеркиванием третьего столбца и первой строки из матрицы $C_{1,1,1}$, причём число в клетке $(3,1)$ нужно будет заменить на $\infty$:
+
+\medskip
+\begin{tabular}{|>{\columncolor{Gray}}c|c|c|}
+\hline
+\rowcolor{Gray}
+\cellcolor{white} & 1 & 2 \\
+\hline
+3 & $\infty$ & 0 \\
+\hline
+4 & 0 & $\infty$ \\
+\hline
+\end{tabular}
+\medskip
+
+Она опять у нас сразу приведённая и $\varphi\left(\Gamma_{\{(5,4);(2,5);(1,3)\}}\right)=12$.
+
+Раз сумма констант последнего приведения равна нулю, то ветвь соответствующую множеству $\Gamma_{\{(5,4);(2,5);\overline{(1,3)}\}}$ можно не рассматривать, ведь меньшую сумму констант мы уже не получим.
+
+Нулевые клетки матрицы $C_{1,1,1,1}$ дают те дуги, которые с найденными ранее и составляют обход коммивояжёра, причём вес этого обхода равен значению оценочной функции, т.е. 12. Вот этот обход:
+
+$(1,3) (3,2) (2,5) (5,4) (4,1)$ или
+$1\to3\to2\to5\to4\to1$.
+
+\end{document}

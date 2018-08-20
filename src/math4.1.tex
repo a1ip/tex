@@ -14,7 +14,7 @@
 \usepackage{hyphenat}
 \hyphenation{мате-мати-ка восста-навливать}
 %--------------------------------------
-\usepackage[intlimits,sumlimits]{amsmath}
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
 \usepackage{amsfonts,amssymb,amsthm,mathtools}
 \usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
 \usepackage{upgreek}
@@ -46,7 +46,7 @@
 \date{}
 \maketitle
 \section*{Задание № 1.}
-Найти пределы функций в точке $x_0$ , используя свойства пределов, замечательные
+Найти пределы функций в точке $x_0$ , используя свойства пределов, замечательные
 пределы и сравнение бесконечно малых.
 
 $$1)\; \lim_{x\to x_0}\frac{2x^2-6x+4}{3x^2-3}=\frac{2}{3}\lim_{x\to x_0}\frac{x^2-3x+2}{x^2-1}=\frac{2}{3}\lim_{x\to x_0}\frac{(x-2)(x-1)}{(x+1)(x-1)}=\frac{2}{3}\lim_{x\to x_0}\frac{x-2}{x+1};$$
@@ -124,6 +124,7 @@ $$\lim_{x\to2-0}f(x)=\lim_{x\to2-0}\sin{(x-1)}=\sin{(2-1)}=\sin1\approx0,84;\qua
     domain=-0.5:1,
     samples=100,
     color=red,
+    thick,
 ]
 {x-1};
 \addlegendentry{$x-1,\quad x\leq 1$}
@@ -131,6 +132,7 @@ $$\lim_{x\to2-0}f(x)=\lim_{x\to2-0}\sin{(x-1)}=\sin{(2-1)}=\sin1\approx0,84;\qua
     domain=1:2,
     samples=100,
     color=blue,
+    thick,
 ]
 {sin(deg(x-1))};
 \addlegendentry{$\sin{(x-1)},\quad 1<x\leq 2$}
@@ -138,6 +140,7 @@ $$\lim_{x\to2-0}f(x)=\lim_{x\to2-0}\sin{(x-1)}=\sin{(2-1)}=\sin1\approx0,84;\qua
     domain=2:3,
     samples=100,
     color=green,
+    thick,
 ]
 {x^2};
 \addlegendentry{$x^2,\quad x > 2$}
@@ -237,8 +240,83 @@ $y=\frac{2x^3}{x^2+2x-3}$
 
 Уравнения наклонных асимптот $y=kx+b$, где $k=\lim\limits_{x\to\pm\infty}\frac{y(x)}{x}$, $b=\lim\limits_{x\to\pm\infty}y(x)-kx$.
 
-$$k=\lim\limits_{x\to\pm\infty},$$
+$$k=\lim\limits_{x\to\pm\infty}\frac{2x^3}{(x^2+2x-3)\cdot x}=2,$$
 
-$$b=\lim\limits_{x\to\pm\infty}.$$
+$$b=\lim\limits_{x\to\pm\infty}\left(\frac{2x^3}{x^2+2x-3}-2x\right)=\lim\limits_{x\to\pm\infty}\left(\frac{2x^3-2x^3-4x^2+6x}{x^2+2x-3}\right)=-4.$$
+
+Таким образом, при $x\to-\infty$ и $x\to+\infty$ график функции имеет всего одну асимптоту $y=2x-4$.
+
+Найдем интервалы возрастания и убывания функции и точки экстремумов.
+
+$$y^\prime=\left(\frac{2x^3}{x^2+2x-3}\right)^\prime=\frac{2x^2\cdot(x^2+4x-9)}{(x+3)^2\cdot(x-1)^2}=\frac{2x^2\cdot(x+\sqrt{13}+2)\cdot(x-\sqrt{13}+2)}{(x+3)^2\cdot(x-1)^2}.$$
+
+Первая производная функции $y^\prime>0$ при $x<-\sqrt{13}-2$ и при $x>\sqrt{13}-2$, следовательно на этих интервалах функция возрастает.
+
+При $x\in\left(-\sqrt{13}-2;-3\right)\cup\left(-3;0\right)\cup\left(0;1\right)\cup\left(1;\sqrt{13}-2\right)\quad$ $y^\prime<0$, следовательно на этих интервалах функция убывает.
+
+$y^\prime$ не существует при $x=-3$, $x=1$.
+
+При переходе через точку $x=-\sqrt{13}-2\approx-5,6$ значение $y^\prime$ меняет знак с «+» на «$-$», следовательно эта точка является точкой локального максимума функции, причём $y(-\sqrt{13}-2)\approx-20,468$.
+
+При переходе через точку $x=\sqrt{13}-2\approx1,6$ значение $y^\prime$ меняет знак с «$-$» на «+», следовательно эта точка является точкой локального минимума функции, причём $y(\sqrt{13}-2)\approx2,968$.
+
+Найдем интервалы выпуклости, вогнутости графика функции и точки перегиба, используя вторую производную заданной функции, которая равна
+
+$$y^{\prime\prime}=\left(y^\prime\right)^\prime=\frac{4x\cdot(7x^2-18x+27)}{(x+3)^3\cdot(x-1)^3}$$
+
+$y^{\prime\prime}<0$ при $x\in(-\infty;-3)\cup(0;1)$, следовательно на этих интервалах график функции выпуклый.
+
+$y^{\prime\prime}>0$ при $x\in(-3;0)\cup(1;+\infty)$, следовательно на этих интервалах график функции вогнутый.
+
+При переходе через точки $x=-3$, $x=0$, $x=1$ значение $y^{\prime\prime}$ меняет знак. При $x=-3$, $x=1$ функция не определена, следовательно график функции имеет одну точку перегиба $x=0$.
+
+Построим график функции.
+
+\begin{tikzpicture}
+\begin{axis}[
+  legend pos=outer north east,
+  axis x line=center,
+  axis y line=center,
+  xtick={-10,-8,...,5},
+  ytick={-30,-20,...,26},
+  xlabel={$x$},
+  ylabel={$y$},
+  xlabel style={below right},
+  ylabel style={above left},
+  xmin=-10,
+  xmax=6,
+  ymin=-30,
+  ymax=26
+]
+\addplot [
+    domain=-10:-3.1,
+    samples=100,
+    color=blue,
+    very thick,
+]
+{2*x^3/(x^2+2*x-3)};
+\addplot [
+    domain=-2.9:0.99,
+    samples=100,
+    color=blue,
+    very thick,
+]
+{2*x^3/(x^2+2*x-3)};
+\addplot [
+    domain=1.01:6,
+    samples=100,
+    color=blue,
+    very thick,
+]
+{2*x^3/(x^2+2*x-3)};
+\addlegendentry{$y=\frac{2x^3}{x^2+2x-3}$}
+\addplot [domain=-10:6,color=black, dashed,]
+{2*x-4};
+\addplot [domain=-10:6,color=black, dashed,]
+coordinates {(1,-30)(1,26)};
+\addplot [domain=-10:6,color=black, dashed,]
+coordinates {(-3,-30)(-3,26)};
+\end{axis}
+\end{tikzpicture}
 
 \end{document}

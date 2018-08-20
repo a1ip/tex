@@ -1,0 +1,97 @@
+\documentclass[fleqn]{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{>=latex}
+
+\title{Задачка по алгебре}
+\author{Ригованов Филипп Юрьевич}
+\begin{document}
+\date{}
+\maketitle
+\section*{Условие}
+Моторная лодка проплывает по реке 2 км против течения за тоже время, что она проплывает 3 км по течению. Расстояние между двумя пристанями 24 км. Для того, чтобы преодолеть это расстояние туда и обратно моторной лодке требуется 2,5 часа. Найти собственную скорость лодки(скорость в стоячей воде) и скорость течения.
+
+Решение:
+
+Пусть $x$ км/ч - скрость лодки против течения, а $y$ км/ч - скорость лодки по течению. Тогда имеем систему уравнений:
+
+
+$$\begin{cases}
+\frac{2}{x}=\frac{3}{y}\\
+\frac{24}{x}+\frac{24}{y}=2,5
+\end{cases}
+\begin{cases}
+2y=3x\\
+\frac{24}{x}+\frac{24}{y}=2,5
+\end{cases}
+\begin{cases}
+y=1,5x\\
+\frac{24}{x}+\frac{24}{1,5x}=2,5
+\end{cases}
+\begin{cases}
+y=1,5x\\
+\frac{24\cdot3}{3x}+\frac{24\cdot2}{3x}=2,5
+\end{cases}
+\begin{cases}
+y=1,5x\\
+24\cdot5=2,5\cdot3x
+\end{cases}
+\begin{cases}
+y=1,5x\\
+x=\frac{24\cdot5}{3\cdot2,5}
+\end{cases}
+$$
+
+$$
+\begin{cases}
+y=1,5x\\
+x=16
+\end{cases}
+\begin{cases}
+y=24\\
+x=16
+\end{cases}
+$$
+
+Пусть теперь $u$ км/ч - скорость течения, а $v$ км/ч - собственная скорость лодки.
+
+Тогда $u=\frac{y-x}{2}=\frac{8}{2}=4$ км/ч, $v=x+u=16+4=20$ км/ч.
+
+Ответ: 20 км/ч и 4 км/ч.
+
+\end{document}

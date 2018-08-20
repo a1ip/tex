@@ -1,0 +1,335 @@
+\documentclass[fleqn]{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{>=latex}
+
+\usetikzlibrary{arrows.meta}
+
+\usepackage{multirow}
+
+\usepackage{xcolor,colortbl}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\DeclareMathOperator{\sign}{sign}
+
+\title{Контрольная работа по дициплине «Статистика»\\
+Вариант №7}
+
+\begin{document}
+\date{}
+\maketitle
+\section*{Вариационные ряды распределения}
+
+На основе уловных ранжированных данных таблицы провести анализ вариации величины налоговых сборов (тыс. руб.) с предприятий района, собранных налоговыми органами.
+
+1. Построить интервальный ряд распределения.
+
+2. Рассчитать медиану.
+
+3. Рассчитать моду.
+
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{4}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 \\
+\hline
+$x_i$ & 142 & 143 & 169 & 169 & 223 & 233 & 236 & 290 & 292 & 292 & 338 & 359 & 363 & 367 & 368 & 411 & 436 & 449 & 460 & 480 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$i$ & 21 & 22 & 23 & 24 & 25 & 26 & 27 & 28 & 29 & 30 & 31 & 32 & 33 & 34 & 35 & 36 & 37 & 38 & 39 & 40 \\
+\hline
+$x_i$ & 488 & 493 & 500 & 500 & 513 & 515 & 523 & 526 & 533 & 533 & 559 & 560 & 564 & 580 & 585 & 592 & 595 & 604 & 653 & 671 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+$i$ & 41 & 42 & 43 & 44 & 45 & 46 & 47 & 48 & 49 & 50 \\
+\hline
+$x_i$ & 676 & 698 & 700 & 717 & 761 & 808 & 818 & 838 & 869 & 888 \\
+\hline
+\end{tabular}
+\end{center}
+\egroup
+
+\begin{center}Решение:\end{center}
+
+Найдём число групп в ряду распределения по формуле Стерджесса:
+
+$$k=1+\log_2{50}\approx7.$$
+
+Тогда длина интервала (округлим до десятков) будет:
+
+$$h=\frac{888-142}{7}\approx107\approx110\textit{(тыс. руб.)}.$$
+
+Построим таблицу распределения частот по интервалам. Верхнюю границу интервалов будем включать в интервал, а нижнюю исключать, так что точка попавшая на границу интервалов будет принадлежать интервалу который слева от неё.
+
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{6}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+Интервалы, тыс. руб. & 140-250 & 250-360 & 360-470 & 470-580 & 580-690 & 690-800 & 800-910 \\
+\hline
+$f_i$(частота) & 7 & 5 & 7 & 15 & 7 & 4 & 5 \\
+\hline
+$w_i,\%$(частость) & 14 & 10 & 14 & 30 & 14 & 8 & 10 \\
+\hline
+$F_i$(накопленная частота) & 7 & 12 & 19 & 34 & 41 & 45 & 50 \\
+\hline
+$P_i,\%$(накопленная частость) & 14 & 24 & 38 & 68 & 82 & 90 & 100 \\
+\hline
+\end{tabular}
+\end{center}
+\egroup
+
+Из таблицы распределения частот по интервалам видно, что медианным интервалом является интервал $470-580$ поскольку именно на нём накопленная частость $P_i$ переходит за $50\%$. Вычислим значение медианы:
+
+$$Me=470+110\cdot\frac{\frac{50}{2}-19}{15}=470+110\cdot\frac{25-19}{15}=470+\frac{660}{15}=470+44=514\textit{(тыс. руб.)}.$$
+
+Этот же интервал является и модальным, поскольку именно на него приходится наибольшая частота. Рассчитаем величину моды:
+
+$$Mo=470+110\cdot\frac{15-7}{(15-7)+(15-7)}=470+110\cdot\frac{8}{8+8}=470+\frac{110}{2}=470+55=525\textit{(тыс. руб.)}.$$
+
+
+\bigskip
+
+\section*{Анализ рядов динамики}
+
+Проанализировать ряд динамики, приведённый в таблице.
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{7}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+Год & 2007 & 2008 & 2009 & 2010 & 2011 & 2012 & 2013 \\
+\hline
+\specialcell{Численность осужденных\\за преступления, тыс. чел.} & 1184 & 1244 & 859 & 767 & 794 & 879 & 910 \\
+\hline
+\end{tabular}
+\end{center}
+\egroup
+
+\begin{center}Решение:\end{center}
+
+Вычислим базисные абсолютные изменения:
+
+$$\Delta y_2^\textit{Б}=y_2-y_1=1244-1184=60;\;\Delta y_3^\textit{Б}=y_3-y_1=859-1184=-325;\;\Delta y_4^\textit{Б}=y_4-y_1=767-1184=-417;$$
+$$\Delta y_5^\textit{Б}=y_5-y_1=794-1184=-390;\;\Delta y_6^\textit{Б}=y_6-y_1=879-1184=-305;\;\Delta y_7^\textit{Б}=y_7-y_1=910-1184=-274.$$
+
+Теперь цепные абсолютные изменения:
+
+$$\Delta y_2^\textit{Ц}=y_2-y_1=1244-1184=60;\;\Delta y_3^\textit{Ц}=y_3-y_2=859-1244=-385;\;\Delta y_4^\textit{Ц}=y_4-y_3=767-859=-92;$$
+$$\Delta y_5^\textit{Ц}=y_5-y_4=794-767=27;\;\Delta y_6^\textit{Ц}=y_6-y_5=879-794=85;\;\Delta y_7^\textit{Ц}=y_7-y_6=910-879=31.$$
+
+Правильность расчётов подтверждается тем что:
+
+$$\sum_{i=1}^7\Delta y_i^\textit{Ц}=60-385-92+27+85+31=-274=\Delta y_7^\textit{Б}.$$
+
+Далее вычислим базовые относительные изменения:
+
+$$i_2^\textit{Б}=y_2/y_1=1244/1184\approx1,05;\;i_3^\textit{Б}=y_3/y_1=859/1184\approx0,73;\;i_4^\textit{Б}=y_4/y_1=767/1184\approx0,65;$$
+$$i_5^\textit{Б}=y_5/y_1=794/1184\approx0,67;\;i_6^\textit{Б}=y_6/y_1=879/1184\approx0,74;\;i_7^\textit{Б}=y_7/y_1=910/1184\approx0,77.$$
+
+А теперь цепные относительные изменения:
+
+$$i_2^\textit{Ц}=y_2/y_1=1244/1184\approx1,05;\;i_3^\textit{Ц}=y_3/y_2=859/1244\approx0,69;\;i_4^\textit{Ц}=y_4/y_3=767/859\approx0,89;$$
+$$i_5^\textit{Ц}=y_5/y_4=794/767\approx1,04;\;i_6^\textit{Ц}=y_6/y_5=879/794\approx1,11;\;i_7^\textit{Ц}=y_7/y_6=910/879\approx1,04.$$
+
+Правильность расчётов подтверждается тем что:
+
+$$\prod_{i=1}^7i_i^\textit{Ц}=1,05\cdot0,69\cdot0,89\cdot1,04\cdot1,11\cdot1,04\approx0,77\approx i_7^\textit{Б}.$$
+
+Вычислим базисные темпы изменения:
+
+$$T_2^\textit{Б}=(i_2^\textit{Б}-1)\cdot100\approx(1,05-1)\cdot100\approx0,05;\;T_3^\textit{Б}=(i_3^\textit{Б}-1)\cdot100\approx(0,73-1)\cdot100\approx-0,27;$$
+$$T_4^\textit{Б}=(i_4^\textit{Б}-1)\cdot100\approx(0,65-1)\cdot100\approx-0,35;\;T_5^\textit{Б}=(i_5^\textit{Б}-1)\cdot100\approx(0,67-1)\cdot100\approx-0,33;$$
+$$T_6^\textit{Б}=(i_6^\textit{Б}-1)\cdot100\approx(0,74-1)\cdot100\approx-0,26;\;T_7^\textit{Б}=(i_7^\textit{Б}-1)\cdot100\approx(0,77-1)\cdot100\approx-0,23.$$
+
+И наконец цепные темпы изменения:
+
+$$T_2^\textit{Ц}=(i_2^\textit{Ц}-1)\cdot100\approx(1,05-1)\cdot100\approx0,05;\;T_3^\textit{Ц}=(i_3^\textit{Ц}-1)\cdot100\approx(0,69-1)\cdot100\approx-0,31;$$
+$$T_4^\textit{Ц}=(i_4^\textit{Ц}-1)\cdot100\approx(0,89-1)\cdot100\approx-0,11;\;T_5^\textit{Ц}=(i_5^\textit{Ц}-1)\cdot100\approx(1,04-1)\cdot100\approx0,04;$$
+$$T_6^\textit{Ц}=(i_6^\textit{Ц}-1)\cdot100\approx(1,11-1)\cdot100\approx0,11;\;T_7^\textit{Ц}=(i_7^\textit{Ц}-1)\cdot100\approx(1,04-1)\cdot100\approx0,04.$$
+
+В последней строке запишем суммы элементов соответствующих столбцов и требуемая таблица готова.
+
+\bgroup
+\def\arraystretch{1.8}
+\setlength\tabcolsep{10}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+Год & $y_i$ & $\Delta y_i^\textit{Б}$ & $\Delta y_i^\textit{Ц}$ & $i_i^\textit{Б}$ & $i_i^\textit{Ц}$ & $T_i^\textit{Б}$,\% & $T_i^\textit{Ц}$,\% \\
+\hline
+2007 & 1184 & -- & -- & -- & -- & -- & -- \\
+\hline
+2008 & 1244 & 60 & 60 & $1,05$ & $1,05$ & $0,05$ & $0,05$ \\
+\hline
+2009 & 859 & -325 & -385 & $0,73$ & $0,69$ & $-0,27$ & $-0,31$ \\
+\hline
+2010 & 767 & -417 & -92 & $0,65$ & $0,89$ & $-0,35$ & $-0,11$ \\
+\hline
+2011 & 794 & -390 & 27 & $0,67$ & $1,04$ & $-0,33$ & $0,04$ \\
+\hline
+2012 & 879 & -305 & 85 & $0,74$ & $1,11$ & $-0,26$ & $0,11$ \\
+\hline
+2013 & 910 & -274 & 31 & $0,77$ & $1,04$ & $-0,23$ & $0,04$ \\
+\hline
+Итого & 6637 & – 1651 & -274 & $4,61$ & $5,82$ & $−1,39$ & $−0,18$ \\
+\hline
+\end{tabular}
+\end{center}
+\egroup
+
+\bigskip
+
+\section*{Статистические индексы}
+
+Имеются данные о продажах минимаркетом 3-х видов однородных товаров (A, B и C).
+
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{10}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{\specialcell{Вид\\товара}} & \multicolumn{2}{c|}{\specialcell{Цена за единицу\\товара, руб.}} & \multicolumn{2}{c|}{\specialcell{Объём продаж,\\тыс. штук}} \\
+\cline{2-5}
+ & 1 квартал & 2 квартал & 1 квартал & 2 квартал \\
+\hline
+A & 107 & 110 & 220 & 189 \\
+\hline
+B & 46 & 44 & 490 & 550 \\
+\hline
+C & 18 & 20 & 720 & 680 \\
+\hline
+\end{tabular}
+\end{center}
+\egroup
+
+Рассчитать индивидуальные, общие и средние индексы, выполнить факторный анализ общей выручки от продажи товаров. По итогам расчетов сделать аргументированные выводы.
+
+\begin{center}Решение:\end{center}
+
+Найдём индивидуальные индексы цены $i_p=\frac{p_1}{p_0}$ для каждого из товаров A, B, C:
+
+$$i_p^A=\frac{110}{107}\approx1,028;\quad i_p^B=\frac{44}{46}\approx0,957;\quad i_p^C=\frac{20}{18}\approx1,111.$$
+
+Индивидуальные индексы количества $i_q=\frac{q_1}{q_0}$ для каждого из товаров A, B, C:
+
+$$i_q^A=\frac{189}{220}\approx0,859;\quad i_q^B=\frac{550}{490}\approx1,122;\quad i_q^C=\frac{680}{720}\approx0,944.$$
+
+Индивидуальные индексы выручки $i_Q=i_q\cdot i_p$ для товаров A, B, C:
+
+$$i_Q^A=0,859\cdot1,028\approx0,883;\quad i_Q^B=1,122\cdot0,957\approx1,074;\quad i_Q^C=0,944\cdot1,111\approx1,049.$$
+
+Найдём общие суммы выручки в каждом из кварталов:
+
+$$Q_0=\sum{q_0p_0}=220\cdot107+490\cdot46+720\cdot18=23540+22540+12960=59040 (\textit{тыс. руб.});$$
+$$Q_1=\sum{q_1p_1}=189\cdot110+550\cdot44+680\cdot20=20790+24200+13600=58590  (\textit{тыс. руб.}).$$
+
+Индекс общего объёма товарооборота (выручки):
+
+$$I_Q=\frac{Q_1}{Q_0}=\frac{\sum{q_1p_1}}{\sum{q_0p_0}}=\frac{58590}{59040}\approx0,992.$$
+
+Этот индекс показывает что выручка уменьшилась на $0,8$\%.
+
+Раз в задаче речь идёт о продаже товара в минимаркете, то цена является первым фактором, а количество вторым.
+
+Тогда агрегатный индекс Ласпейреса:
+
+$$I_p^\textit{Л}=\frac{\sum{p_1q_0}}{\sum{p_0q_0}}=\frac{110\cdot220+44\cdot490+20\cdot720}{59040}=\frac{24200+21560+14400}{59040}=\frac{60160}{59040}\approx1,019.$$
+
+А агрегатный индекс Пааше будет:
+
+$$I_q^\textit{П}=\frac{\sum{p_1q_1}}{\sum{p_1q_0}}=\frac{58590}{60160}\approx0,974.$$
+
+Раз товары однородные, то можем посчитать средние цены в первом и втором кварталах:
+
+$$\overline{p_0}=\frac{\sum{p_0q_0}}{\sum{q_0}}=\frac{59040}{220+490+720}=41,287 (\textit{руб.});\quad\overline{p_1}=\frac{\sum{p_1q_1}}{\sum{q_1}}=\frac{58590}{189+550+680}\approx41,290 (\textit{руб.}).$$
+
+И индекс средних цен:
+
+$$I_{\overline{p}}=\frac{\overline{p_1}}{\overline{p_0}}=\frac{41,290}{41,287}\approx1,00007.$$
+
+Проведём теперь факторный анализ:
+
+$$\Delta Q=Q_1-Q_0=58590-59040=−450 (\textit{тыс. руб.}).$$
+
+Товарооборот уменьшился. На изменение товарооборота влияли два фактора: изменение цен и изменение количества товаров (причём цена у нас является первым фактором, а количество вторым).
+
+$$\Delta Q=\Delta Q_p+\Delta Q_q$$
+
+Применяя метод Чалиева вычислим:
+
+$$\Delta Q_p=I_q^\textit{П}\cdot\left(I_p^\textit{Л}-1\right)\cdot Q_0=0,974\cdot(1,019-1)\cdot59040\approx1092,6 (\textit{тыс. руб.})$$
+
+$$\Delta Q_q=\left(I_q^\textit{П}-1\right)\cdot Q_0=(0,974-1)\cdot59040\approx-1535,04 (\textit{тыс. руб.})$$
+
+Проверка правильности расчета влияния факторов: $\Delta Q =\Delta Q_p+\Delta Q_q =1092,6-1535,04=-442,44$ тыс. руб., что близко к общему изменению общей выручки, рассчитанному ранее, значительная погрешность появилась при округлении.
+
+
+Факторный анализ показал, что те изменения цен, которые произошли во втором квартале, должны были увеличить выручку при прежнем количестве продаж на 1092,6 тыс. руб. Однако выручка наоборот уменьшилась на 450 тыс. руб., значит это произошло за счёт негативного влияния второго фактора -- изменения количества.
+
+\begin{comment}
+\end{comment}
+\end{document}

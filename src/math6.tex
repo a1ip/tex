@@ -49,13 +49,46 @@ $$3)\;\int\frac{dx}{x+2x^{5/7}};\qquad4)\;\int x\cdot\arctg{x}\,dx;\qquad5)\;\in
 
 \begin{center}Решение:\end{center}
 
+$$1)\;\int\left(10+\frac{4}{\sqrt{16-x^2}}-\frac{7}{x^4}-3\sqrt[3]{x^2}+\cos{x}\right)\,dx=10\int{dx}+4\int\frac{dx}{\sqrt{4^2-x^2}}-7\int{x^{-4}}dx-\qquad\qquad$$
+
+$$-3\int{x^{\frac{2}{3}}}dx+\int\cos{x}dx=10x+4\arcsin{\frac{x}{4}}+\frac{7}{3x^3}-\frac{9\sqrt[3]{x^5}}{5}+\sin{x}+C;$$
+
+$$2)\;\int\sqrt[3]{5x+4}\,dx=\frac{1}{5}\int(5x+4)^{\frac{1}{3}}\,d(5x+4)=\frac{3(5x+4)^{\frac{4}{3}}}{20}+C;\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad$$
+
+$$3)\;\int\frac{dx}{x+2x^{5/7}}=\int\frac{dx}{x^{5/7}(x^{2/7}+2)}=\int\frac{7d(x^{2/7}+2)}{2(x^{2/7}+2)}=3,5\ln{(x^{2/7}+2)}+C;\qquad\qquad\qquad\qquad\quad$$
+
+$$4)\;\int x\cdot\arctg{x}\,dx=\left\langle \begin{array}{cc} u(x)=\arctg{x} & u^\prime(x)=\frac{dx}{x^2+1} \\ v^\prime(x)=xdx & v(x)=\frac{x^2}{2} \end{array} \right\rangle=\frac{x^2\arctg{x}}{2}-\int \frac{x^2dx}{2(x^2+1)}=\qquad\qquad\qquad$$
+
+$$=\frac{x^2}{2}\arctg{x}-\frac{1}{2}\int \left(1-\frac{1}{x^2+1}\right)dx=\frac{x^2}{2}\arctg{x}-\frac{x}{2}+\frac{1}{2}\arctg{x}+C;$$
+
+$$5)\;\frac{x+3}{x^2+3x+2}=\frac{x+3}{(x+2)(x+1)}=\frac{A_1}{x+2}+\frac{A_2}{x+1}=\frac{A_1(x+1)+A_2(x+2)}{(x+2)(x+1)}=\frac{(A_1+A_2)x+A_1+2A_2}{(x+2)(x+1)};$$
+
+$$
+ \begin{cases}
+   A_1+A_2 = 1\\
+   A_1+2A_2 = 3
+ \end{cases};\qquad
+ \begin{cases}
+   A_2 = 2\\
+   A_1 = -1
+ \end{cases};
+$$
+
+$$\int\frac{(x+3)dx}{x^2+3x+2}=\int\left(-\frac{1}{x+2}+\frac{2}{x+1}\right)dx=-\int\frac{d(x+2)}{x+2}+2\int\frac{d(x+1)}{x+1}=2\ln(x+1)-\ln(x+2)+C.$$
+
 \section*{Задание № 2.}
 
-Найти неопределённый интеграл.
+Вычислить определённый интеграл.
 
 $$\int\limits_{0}^{\pi/2}\frac{dx}{4-\sin{x}+\cos{x}}.$$
 
 \begin{center}Решение:\end{center}
+
+$$\int\limits_{0}^{\pi/2}\frac{dx}{4-\sin{x}+\cos{x}}=\left\langle \begin{array}{cc} \tg{x}=t & dx=\frac{2dt}{1+t^2} \\ \sin{x}=\frac{2t}{1+t^2} & \cos{x}=\frac{1-t^2}{1+t^2} \end{array} \right\rangle=\int\limits_{0}^{1}\frac{2dt}{\left(1+t^2\right)\left(4-\frac{2t}{1+t^2}+\frac{1-t^2}{1+t^2}\right)}=$$
+
+$$=2\int\limits_{0}^{1}\frac{dt}{4+4t^2-2t+1-t^2}=2\int\limits_{0}^{1}\frac{dt}{3t^2-2t+5}=6\int\limits_{0}^{1}\frac{dt}{9t^2-6t+15}=6\int\limits_{0}^{1}\frac{dt}{(3t-1)^2+14}=$$
+
+$$=\frac{3}{7}\int\limits_{0}^{1}\frac{dt}{\left(\frac{3t-1}{\sqrt{14}}\right)^2+1}=\frac{2}{\sqrt{14}}\int\limits_{0}^{1}\frac{d\frac{3t-1}{\sqrt{14}}}{\left(\frac{3t-1}{\sqrt{14}}\right)^2+1}=\frac{2}{\sqrt{14}}\arctg{\frac{3t-1}{\sqrt{14}}}\bigg|\limits_{0}^{1}=\frac{2}{\sqrt{14}}\arctg{\frac{2}{\sqrt{14}}}-\frac{2}{\sqrt{14}}\arctg{\frac{-1}{\sqrt{14}}}.$$
 
 \section*{Задание № 3.}
 
@@ -65,13 +98,46 @@ $$\int\limits_{0}^{+\infty}\frac{x+\sin^2{x}}{x^2+3}\,dx.$$
 
 \begin{center}Решение:\end{center}
 
+Так как $\sin^2{x}\geq0$ , то $\frac{x+\sin^2{x}}{x^2+3}\geq\frac{x}{x^2+3}$, а значит если интеграл $\int\limits_{0}^{+\infty}\frac{x}{x^2+3}\,dx$ расходится, то расходится и интеграл $\int\limits_{0}^{+\infty}\frac{x+\sin^2{x}}{x^2+3}\,dx$. А он расходтся потому что:
+
+$$\int\limits_{0}^{+\infty}\frac{x}{x^2+3}\,dx=\frac{1}{2}\int\limits_{0}^{+\infty}\frac{d(x^2+3)}{x^2+3}=\frac{1}{2}\ln{(x^2+3)}\bigg|\limits_{0}^{+\infty}=+\infty.$$
+
+Значит тем более расходится и исходный несобственный интеграл.
+
 \section*{Задание № 4.}
 
 Исследовать на сходимость числовые ряды $\sum\limits_{n=1}^{\infty}a_n$.
 
-$$1)\;a_n=\frac{n+10}{n^2+2};\qquad2)\;a_n=\frac{n^2+2}{(n+1)!};\qquad3)\;a_n=\frac{1}{(\ln{(n+1)})^n}\;.$$
+$$1)\;a_n=\frac{n+10}{n^2+2};\qquad2)\;a_n=\frac{n^2+2}{(n+1)!};\qquad3)\;a_n=\frac{1}{(\ln{(n+1)})^n};\qquad4)\;a_n=\frac{1}{(n+2)\ln{(n+2)}}\;.$$
 
 \begin{center}Решение:\end{center}
+
+1) $\quad\sum\limits_{n=1}^{\infty}\frac{n+10}{n^2+2}\;.\quad$ Сравним данный знакоположительный ряд с гармоническим рядом $\sum\limits_{n=1}^{\infty}\frac{1}{n}$, который, как известно, расходится. Воспользуемся предельным признаком сравнения:
+
+$$\lim_{n\to\infty}\frac{\frac{n+10}{n^2+2}}{\frac{1}{n}}=\lim_{n\to\infty}\frac{n^2+10n}{n^2+2}=1\neq0.$$
+
+Оба ряда ведут себя одинаково, следовательно исследуемый ряд расходится.
+
+2) $\quad\sum\limits_{n=1}^{\infty}\frac{n^2+2}{(n+1)!}\;.\quad$ Воспользуемся признаком Даламбера.
+
+Для исследуемого ряда $a_n=\frac{n^2+2}{(n+1)!}$,  $a_{n+1}=\frac{(n+1)^2+2}{(n+2)!}$.
+
+$$\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\lim_{n\to\infty}\frac{\frac{(n+1)^2+2}{(n+2)!}}{\frac{n^2+2}{(n+1)!}}=\lim_{n\to\infty}\frac{(n^2+2n+3)(n+1)!}{(n^2+2)(n+2)!}=\lim_{n\to\infty}\frac{n^2+2n+3}{(n^2+2)(n+2)}=\lim_{n\to\infty}\frac{n^2+2n+3}{n^3+2n^2+2n+4}=0<1.$$
+
+Значит исследуемый рад сходится.
+
+3) $\quad\sum\limits_{n=1}^{\infty}\frac{1}{(\ln{(n+1)})^n}\;.\quad$ Воспользуемся радикальным признаком Коши.
+
+$$\lim_{n\to\infty}\sqrt[n]{a_n}=\lim_{n\to\infty}\sqrt[n]{\frac{1}{(\ln{(n+1)})^n}}=\lim_{n\to\infty}\frac{1}{\ln{(n+1)}}=0<1.$$
+
+Значит исследуемый ряд сходится.
+
+4) $\quad\sum\limits_{n=1}^{\infty}\frac{1}{(n+2)\ln{(n+2)}}=\sum\limits_{n=3}^{\infty}\frac{1}{n\ln{n}}\;.\quad$ Воспользуемся интегральным признаком сходимости.
+
+Так как интеграл $\int\limits_{3}^{+\infty}\frac{dx}{x\ln{x}}=\int\limits_{3}^{+\infty}\frac{d\ln x}{\ln{x}}=\ln{\ln{x}}\bigg|\limits_{3}^{+\infty}=+\infty\;$,
+
+
+то расходится и ряд  $\sum\limits_{n=3}^{\infty}\frac{1}{n\ln{n}}=\sum\limits_{n=1}^{\infty}\frac{1}{(n+2)\ln{(n+2)}}\;$.
 
 \section*{Задание № 5.}
 
@@ -81,6 +147,13 @@ $$\sum\limits_{n=1}^{\infty}(-1)^{n-1}\cdot\frac{3^n}{(5n+2)^n}.$$
 
 \begin{center}Решение:\end{center}
 
+Проверим ряд на абсолютную сходимость. $\sum\limits_{n=1}^{\infty}|a_n|=\sum\limits_{n=1}^{\infty}\frac{3^n}{(5n+2)^n}.$
+Воспользуемся радикальным признаком Коши.
+
+$$\lim_{n\to\infty}\sqrt[n]{a_n}=\lim_{n\to\infty}\sqrt[n]{\frac{3^n}{(5n+2)^n}}=\lim_{n\to\infty}{\frac{3}{5n+2}}=0<1.$$
+
+Значит исследуемый знакопеременный ряд сходится абсолютно.
+
 \section*{Задание № 6.}
 
 Найти область сходимости степенного ряда.
@@ -89,9 +162,27 @@ $$\sum\limits_{n=1}^{\infty}\frac{(x-1)^n}{(3n-1)^2\cdot3^n}.$$
 
 \begin{center}Решение:\end{center}
 
+Применим признак Даламбера, для абсолютной сходимости ряда.
+
+$$\lim_{n\to\infty}\bigg|\frac{u_{n+1}(x)}{u_n(x)}\bigg|=\lim_{n\to\infty}\bigg|\frac{(x-1)^{n+1}\cdot(3n-1)^2\cdot3^n}{(3(n+1)-1)^2\cdot3^{n+1}\cdot(x-1)^n}\bigg|=\lim_{n\to\infty}\bigg|\frac{(x-1)\cdot(3n-1)^2}{3\cdot(3n+2)^2}\bigg|=$$
+$$=\lim_{n\to\infty}\bigg|\frac{(x-1)\cdot(9n^2-6n+1)}{3\cdot(9n^2+12n+4)^2}\bigg|=\bigg|\frac{x-1}{3}\bigg|;$$
+
+$$\bigg|\frac{x-1}{3}\bigg|<1;\quad|x-1|<3;\quad-3<x-1<3;\quad-2<x<4.$$
+
+Следовательно при $-2<x<4$ исследуемый степенной ряд будет сходиться абсолютно.
+
+Исследуем поведение ряда на концах интервала.
+
+При $x=-2$ получаем знакопеременный числовой ряд $\sum\limits_{n=1}^{\infty}\frac{(-3)^n}{(3n-1)^2\cdot3^n}=\sum\limits_{n=1}^{\infty}\frac{(-1)^n}{(3n-1)^2}$, который сходится абсолютно, вместе с частным случаем обобщённого гармонического $\sum\limits_{n=1}^{\infty}\frac{1}{n^2}$.
+
+При $x=4$ получаем сходящийся знакопостоянный числовой ряд
+$\sum\limits_{n=1}^{\infty}\frac{(3)^n}{(3n-1)^2\cdot3^n}=\sum\limits_{n=1}^{\infty}\frac{1}{(3n-1)^2}$
+
+Итак, обе границы интервала так же принадлежат области абсолютной сходимости степенного ряда $\sum\limits_{n=1}^{\infty}\frac{(x-1)^n}{(3n-1)^2\cdot3^n}$, значит окончательно областью его абсолютной сходимости является промежуток $-2\leq x\leq4$.
+
 \section*{Задание № 7.}
 
-Разложить в тригонометрический ряд Фурье функцию $f(x)$.
+Разложить в тригонометрический ряд Фурье функцию $f(x)$.
 
 \begin{equation*}
 f(x)=
@@ -102,5 +193,28 @@ f(x)=
 \end{equation*}
 
 \begin{center}Решение:\end{center}
+
+Заданная функция $f(x)$ определена на интервале $(-1;1)$, следовательно ряд Фурье для этой функции будет иметь вид $\frac{a_0}{2}+\sum\limits_{n=1}^{\infty}a_n \cos{n\pi x}+b_n \sin{n\pi x}$,
+
+
+где $a_0=\int\limits_{-1}^{1}f(x)dx,\quad$ $a_n=\int\limits_{-1}^{1}f(x)\cos{n\pi x}dx,\quad$ $b_n=\int\limits_{-1}^{1}f(x)\sin{n\pi x}dx$.
+
+Вычислим коэффициенты ряда Фурье для заданной функции.
+
+$$a_0=\int\limits_{-1}^{1}f(x)dx=\int\limits_{-1}^{0}dx+\int\limits_{0}^{1}(2-x)dx=x\bigg|\limits_{-1}^{0}+2x\bigg|\limits_{0}^{1}-\frac{x^2}{2}\bigg|\limits_{0}^{1}=1+2-0,5=2,5.$$
+
+$$a_n=\int\limits_{-1}^{1}f(x)\cos{n\pi x}dx=\int\limits_{-1}^{0}\cos{n\pi x}dx+\int\limits_{0}^{1}(2-x)\cos{n\pi x}dx=\frac{\sin{n\pi x}}{n\pi}\bigg|\limits_{-1}^{0}+\frac{2\sin{n\pi x}}{n\pi}\bigg|\limits_{0}^{1}-\int\limits_{0}^{1}x\cos{n\pi x}dx=$$
+
+$$=\frac{1}{n^2\pi^2}-\frac{\sin{n\pi}}{n\pi}+\frac{\cos{n\pi}}{n^2\pi^2}.$$
+
+$$b_n=\int\limits_{-1}^{1}f(x)\sin{n\pi x}dx=\int\limits_{-1}^{0}\sin{n\pi x}dx+\int\limits_{0}^{1}(2-x)\sin{n\pi x}dx=-\frac{\cos{n\pi x}}{n\pi}\bigg|\limits_{-1}^{0}-\frac{2\cos{n\pi x}}{n\pi}\bigg|\limits_{0}^{1}-\int\limits_{0}^{1}x\sin{n\pi x}dx=$$
+
+$$=\frac{1}{n\pi}-\frac{\cos{n\pi}}{n\pi}+\frac{\cos{n\pi}}{n\pi}-\frac{\sin{n\pi}}{n^2\pi^2}=\frac{1}{n\pi}-\frac{\sin{n\pi}}{n^2\pi^2}.$$
+
+Таким образом, в точках дифференцируемости функции $f(x)$ имеем:
+
+$$f(x)=2,5+\sum\limits_{n=1}^{\infty}\left(\frac{1}{n^2\pi^2}-\frac{\sin{n\pi}}{n\pi}+\frac{\cos{n\pi}}{n^2\pi^2}\right)\cdot\cos{n\pi x}+\left(\frac{1}{n\pi}-\frac{\sin{n\pi}}{n^2\pi^2}\right)\cdot\sin{n\pi x}=$$
+
+$$=2,5+\frac{1}{n\pi}\sum\limits_{n=1}^{\infty}\left(\frac{1}{n\pi}-\sin{n\pi}+\frac{\cos{n\pi}}{n\pi}\right)\cdot\cos{n\pi x}+\left(1-\frac{\sin{n\pi}}{n\pi}\right)\cdot\sin{n\pi x}.$$
 
 \end{document}

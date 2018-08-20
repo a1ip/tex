@@ -1,0 +1,236 @@
+\documentclass[fleqn]{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{>=latex}
+
+\usetikzlibrary{arrows.meta}
+
+\usepackage{xcolor,colortbl}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\DeclareMathOperator{\sign}{sign}
+
+\title{Контрольная работа по курсу «Элементы дискретной математики»\\
+Вариант №2}
+
+\begin{document}
+\date{}
+\maketitle
+\section*{Задание № 1.}
+
+Даны множества чисел: $A=\{0,1,3,4\}$, $B=\{3,4,5,6\}$, $C=\{1,2,4,6\}$ и универсальное множество $U=\{0,1,2,3,4,5,6,7\}$.
+
+Найти множества чисел $D=\overline{A\cup B}\cup (C\cap B),\;\; E=(\overline{B}\cap \overline{A})\cup (C\cap(B\setminus A))$. Являются ли множества $E$ и $D$ равными? эквивалентными? включающими одно в другое ( $D \subset E$ или $E \subset D$ )? пересекающимися, но не включающими одно в другое? непересекающимися $( D \cap E = \varnothing )$?
+
+\begin{center}Решение:\end{center}
+
+Для нахождения множества $D$ сначала найдем: объединение $A\cup B=\{0,1,3,4,5,6\}$, и его дополнение (до множества $U$) $\overline{A\cup B}=\{2,7\}$, затем пересечение $C\cap B=\{4,6\}$. Теперь $D=\{2,7\}\cup\{4,6\}=\{2,4,6,7\}$.
+
+Для нахождения множества $E$ сначала найдем: дополнения множеств $\overline{B}$ и $\overline{A}$ (до множества $U$) $\overline{B}=\{0,1,2,7\}$, $\overline{A}=\{2,5,6,7\}$ и их пересечение $\overline{B}\cap\overline{A}=\{2,7\}$, а так же разность множеств $B\setminus A=\{5,6\}$ и пересечение $C\cap(B\setminus A)=\{6\}$. Теперь $E=\{2,7\}\cup\{6\}=\{2,6,7\}$.
+
+Множества $D$ и $E$ не равные потому что $4\in D$, но $4\notin E$, и не эквивалентные, так как имеют разные мощности (4 и 3 соответсвенно), причём множество $E$ включается в множество $D$ ($E \subset D$).
+
+\section*{Задание № 2.}
+
+Из $100$ работников фирмы $42$ владеют английским языком, $30$ – французским, $28$ – немецким. Десять человек – знают английский и немецкий, $8$ – знают французский и немецкий, $5$ – английский и французский. Три человека знают все три языка. Сколько работников фирмы не знают ни одного языка?
+
+Решить задачу, используя теорию множеств.
+
+
+\begin{center}Решение:\end{center}
+
+Пусть $|A|$, $|B|$ и $|C|$ --- число работников фирмы, владеющих аглийским, французским и немецким языками соответственно. По условию $|A|=42$, $|B|=30$, $|C|=28$, $|A\cap B|=5$, $|A\cap C|=10$, $|B\cap C|=8$, $|A\cap B\cap C|=3$. Тогда по формуле включений-выключений число работников владеющих хотя бы одним из этих языков:
+
+$$|А\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|=42+30+28-5-10-8+3=80.$$
+
+Следовательно число работников не знающих ни одного из этих языков равно $100-80=20$.
+
+\section*{Задание № 3.}
+
+Установить вид формулы алгебры логики:
+$$L = ((A \wedge B) \vee C) \leftrightarrow (A \to (B \vee \overline{C} )).$$
+
+\begin{center}Решение:\end{center}
+
+\medskip
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+$A$ & $B$ & $C$ & $A \wedge B$ & $(A \wedge B) \vee C$ & $B \vee \overline{C}$ & $A\to(B\vee\overline{C})$ & $L$ \\
+\hline
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
+\hline
+0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+\hline
+0 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+\hline
+0 & 1 & 1 & 0 & 1 & 1 & 1 & 1 \\
+\hline
+1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 \\
+\hline
+1 & 0 & 1 & 0 & 1 & 0 & 0 & 0 \\
+\hline
+1 & 1 & 0 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+\end{tabular}
+\medskip
+
+Из полученной таблицы видно, что формула $L$ является выполнимой, так как она принимает значение $1$, но не является тождественно выполнимой (тавтологией), ибо при определенных значениях высказываний она принимает значение $0$.
+
+\section*{Задание № 4.}
+
+С помощью таблицы истинности найти СДНФ и СКНФ булевой
+функции $f(x_1,x_2)=x_1 \wedge x_2 \to(x_1 \to \overline{x_2})$.
+
+\begin{center}Решение:\end{center}
+
+\medskip
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x_1$ & $x_2$ & $\overline{x_2}$ & $x_1 \wedge x_2$ & $x_1 \to \overline{x_2}$ & $f(x_1,x_2)$ \\
+\hline
+0 & 0 & 1 & 0 & 1 & 1 \\
+\hline
+0 & 1 & 0 & 0 & 1 & 1 \\
+\hline
+1 & 0 & 1 & 0 & 1 & 1 \\
+\hline
+1 & 1 & 0 & 1 & 0 & 0 \\
+\hline
+\end{tabular}
+\medskip
+
+1) Функция $f(x_1, x_2)$ равна $1$ на наборах $(x_1, x_2)$: $(0;0)$, $(0;1)$ и $(1;0)$, т.е. соответствующие конъюнкции (над равными $0$ переменными ставим знак отрицания) $\overline{x_1} \wedge \overline{x_2}$, $\overline{x_1} \wedge x_2$ и $x_1 \wedge \overline{x_2}$. Соединяя их знаками дизъюнкции, получим СДНФ функции:
+
+$$f(x_1, x_2)=(\overline{x_1}\wedge\overline{x_2})\vee(\overline{x_1} \wedge x_2)\vee(x_1\wedge\overline{x_2}).$$
+
+2) Функция $f(x_1, x_2)$ равна $0$ только на наборе $(x_1, x_2)$: $(1;1)$, т.е. соответствующая дизъюнкция (над равными $1$ переменными ставим знак отрицания) $\overline{x_1} \vee \overline{x_2}$. Это и будет СКНФ функции:
+
+$$f(x_1, x_2)=\overline{x_1} \vee \overline{x_2}.$$
+
+\section*{Задание № 5.}
+
+Дана матрица:
+
+$$A=
+\begin{pmatrix}
+0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 1 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+\end{pmatrix}.
+$$
+
+Построить ориентированный граф, для которого матрица A является матрицей смежности. Найти матрицу инцидентности.
+
+Является ли полученный граф связным?
+
+\begin{center}Решение:\end{center}
+
+\medskip
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle,thick,draw}]
+    \node (A) at (-3,3) {$v_1$};
+    \node (B) at (3,3) {$v_2$};
+    \node (C) at (4,-2) {$v_3$};
+    \node (D) at (0,-4) {$v_4$};
+    \node (E) at (-4,-2) {$v_5$};
+\end{scope}
+
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white,circle},
+              every edge/.style={draw=red,very thick}]
+    \path [->] (A) edge node {$x_1$} (B);
+    \path [->] (A) edge[bend left=12] node {$x_2$} (C);
+    \path [->] (A) edge node {$x_3$} (E);
+    \path [->] (B) edge node {$x_4$} (C);
+    \path [->] (C) edge[bend left=12] node {$x_5$} (A);
+    \path [->] (D) edge node {$x_6$} (A);
+    \path [->] (D) edge node {$x_7$} (C);
+    \path [->] (E) edge node {$x_8$} (D);
+\end{scope}
+\end{tikzpicture}
+\medskip
+
+Построим матрицу инцидентности:
+
+$$B=
+\begin{pmatrix}
+1 & 1 & 1 & 0 & -1 & -1 & 0 & 0 \\
+-1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & -1 & 0 & -1 & 1 & 0 & -1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & -1 \\
+0 & 0 & -1 & 0 & 0 & 0 & 0 & 1 \\
+\end{pmatrix}
+$$
+
+Данный граф является связным потому что из любой его вершины можно попасть в любую, например по циклу $x_1\to x_4 \to x_2 \to x_3 \to x_8 \to x_6$.
+
+\section*{Задание № 6.}
+
+Определить функцию $f(x,y)$, полученную из функций $g(x) =1$ и
+$h(x, y, z) = x+z$ по схеме примитивной рекурсии.
+
+\begin{center}Решение:\end{center}
+
+Имеем по определению оператора примитивной рекурсии:
+
+1) $f(x,0)=g(x)=1$;
+
+2) $f(x,y+1)=h\left(x,y,f(x,y)\right)=x+f(x,y)$.
+
+Отсюда имеем:
+
+$f(x,1)=x+f(x,0)=x+1$;
+
+$f(x,2)=x+f(x,1)=x+(x+1)=2x+1$;
+
+$f(x,3)=x+f(x,2)=x+(2x+1)=3x+1$ и так далее.
+
+Можно предположить, что $f(x,y)=yx+1$, и доказать эту формулу
+методом математической индукции по переменной $y$.
+
+\end{document}

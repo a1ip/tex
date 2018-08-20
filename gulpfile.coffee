@@ -5,7 +5,7 @@ plumber = require 'gulp-plumber'
 watch = require 'gulp-watch'
 cache = require 'gulp-cached'
 
-paths = 'src/*.tex'
+paths = 'src/philippe_rigovanov.tex'
 
 gulp.task 'latex', ->
   gulp.src(paths)
@@ -16,16 +16,13 @@ gulp.task 'latex', ->
   .pipe gulp.dest('build')
 
 gulp.task 'watch-latex', ->
-  gulp.watch(paths, ['latex'])
+  gulp.watch(paths, gulp.series('latex'))
   return
 
-source = '/Users/phil/my/tex/build/math*.pdf'
-destination = '/Users/phil/Documents/Яндекс.Диск/!University/Math'
+source = 'build/phil*.pdf'
+destination = '/Users/phil/Documents/Яндекс.Диск/Documents'
 gulp.task 'watch-folder', ->
   gulp.src(source).pipe(watch(source)).pipe gulp.dest(destination)
   return
 
-gulp.task 'default', [
-  'watch-latex'
-  'watch-folder'
-]
+gulp.task 'default', gulp.series('latex', gulp.parallel('watch-latex', 'watch-folder'))

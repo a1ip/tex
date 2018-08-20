@@ -1,0 +1,112 @@
+\documentclass[fleqn]{article}
+\usepackage{fullpage}
+%%% Работа с русским языком
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{indentfirst}
+\frenchspacing
+\usepackage{titlesec} % package to customize chapters, sections and subsections style
+%--------------------------------------
+\titleformat{\section}{\large\bfseries\centering}{\thesection}{1em}{}
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{мате-мати-ка восста-навливать}
+%--------------------------------------
+\usepackage[intlimits,sumlimits,fleqn]{amsmath}
+\usepackage{amsfonts,amssymb,amsthm,mathtools}
+\usepackage[bb=pazo,frak=pxtx,frakscaled=1.3]{mathalfa}
+\usepackage{upgreek}
+\usepackage{graphicx}
+\usepackage{verbatim} %% для многострочных комментариев
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\renewcommand{\le}{\ensuremath{\leqslant}}
+\renewcommand{\leq}{\ensuremath{\leqslant}}
+\renewcommand{\ge}{\ensuremath{\geqslant}}
+\renewcommand{\geq}{\ensuremath{\geqslant}}
+
+\newcommand{\tg}{\mathop{\rm tg}\nolimits}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{>=latex}
+
+\usetikzlibrary{arrows.meta}
+
+\usepackage{multirow}
+
+\usepackage{xcolor,colortbl}
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.85}
+
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\DeclareMathOperator{\sign}{sign}
+
+\title{Контрольная работа по дициплине «Методы оптимальных решений»\\
+Вариант №8}
+
+\begin{document}
+\date{}
+\maketitle
+
+\section*{Задание № 1.}
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 2.}
+
+Имеется два вида корма $I$ и $II$, содержащие питательные вещества (витамины) $S_1$, $S_2$ и $S_3$. Содержание числа единиц питательных веществ в $1$ кг каждого вида корма и необходимый минимум питательных веществ приведены в таблице:
+
+\bgroup
+\def\arraystretch{1.5}
+\setlength\tabcolsep{10}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\multirow{2}{*}{\specialcell{Вид\\товара}} & \multicolumn{2}{c|}{\specialcell{Цена за единицу\\товара, руб.}} & \multicolumn{2}{c|}{\specialcell{Объём продаж,\\тыс. штук}} \\
+\cline{2-5}
+ & 1 квартал & 2 квартал & 1 квартал & 2 квартал \\
+\hline
+A & 107 & 110 & 220 & 189 \\
+\hline
+B & 46 & 44 & 490 & 550 \\
+\hline
+C & 18 & 20 & 720 & 680 \\
+\hline
+\end{tabular}
+\end{center}
+\egroup
+
+Стоимость 1 кг корма I и II соответственно равна 4 и 6 ден. ед.
+Необходимо составить дневной рацион, имеющий минимальную стоимость.
+Построить экономико-математическую модель задачи, дать необходимые комментарии к ее элементам и получить решение графическим методом. Что произойдет, если решать задачу на максимум и почему?
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 3.}
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 4.}
+
+\begin{center}Решение:\end{center}
+
+\section*{Задание № 5.}
+
+\begin{center}Решение:\end{center}
+
+
+\begin{comment}
+\end{comment}
+\end{document}
